@@ -1,226 +1,707 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en" class="h-full bg-gray-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>अंश चावला - बिलिंग सॉफ्टवेयर</title>
-    <!-- Google Font (Inter) -->
+    <title>RADHE KRISHNA TRADERS - Billing</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Custom CSS -->
     <style>
-        /* ... (पिछला CSS कोड यहाँ है - कोई बदलाव नहीं) ... */
+        /* --- Reset and Base Styles --- */
         :root {
+            --color-blue-50: #EFF6FF;
+            --color-blue-100: #DBEAFE;
+            --color-blue-500: #3B82F6;
             --color-blue-600: #2563EB;
             --color-blue-700: #1D4ED8;
-            --color-green-600: #16A34A;
-            --color-green-700: #15803D;
-            --color-red-600: #DC2626;
-            --color-red-700: #B91C1C;
+            --color-blue-800: #1E40AF;
+            --color-gray-50: #F9FAFB;
             --color-gray-100: #F3F4F6;
+            --color-gray-200: #E5E7EB;
             --color-gray-300: #D1D5DB;
-            --color-gray-400: #9CA3AF;
             --color-gray-500: #6B7280;
             --color-gray-600: #4B5563;
             --color-gray-700: #374151;
             --color-gray-800: #1F2937;
+            --color-gray-900: #111827;
+            --color-white: #FFFFFF;
+            --color-red-100: #FEE2E2;
+            --color-red-500: #EF4444;
+            --color-red-600: #DC2626;
+            --color-red-700: #B91C1C;
+            --color-red-800: #991B1B;
+            --color-green-600: #16A34A;
+            --color-green-700: #15803D;
+            --color-yellow-500: #EAB308;
+            --color-yellow-600: #CA8A04;
+            --color-yellow-700: #A16207;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --ring-blue: 0 0 0 3px rgba(59, 130, 246, 0.5);
         }
-
-        * {
+        
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
+        html, body {
+            height: 100%;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             background-color: var(--color-gray-100);
-            min-height: 100vh;
-            color: var(--color-gray-800);
+            color: var(--color-gray-900);
         }
+        
         .hidden {
             display: none !important;
         }
-        .container {
-            max-width: 1280px; /* 7xl */
-            margin-left: auto;
-            margin-right: auto;
-            padding: 1rem; /* p-4 */
-        }
-        .card {
-            background-color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 1.5rem; /* p-6 */
-        }
-        .header {
-            display: flex;
-            justify-content: flex-end; /* बदला हुआ: केवल दाईं ओर अलाइन करें */
-            align-items: center;
-            margin-bottom: 1rem; /* mb-4 */
-            padding: 1rem; /* थोड़ा पैडिंग जोड़ा */
-        }
-        /* हेडर h1 को हटा दिया गया */
-        .header #authInfo { /* बदला हुआ ID */
-            display: flex;
-            align-items: center;
-            gap: 0.75rem; /* space-x-3 */
-        }
-        .header #userEmailDisplay { /* बदला हुआ ID */
-            background-color: #E5E7EB; /* bg-gray-200 */
-            padding: 0.25rem 0.5rem; /* p-1 px-2 */
-            border-radius: 0.25rem; /* rounded */
+
+        /* --- Forms (Input, Select, Button) --- */
+        .form-input, .form-select, .form-textarea {
+            display: block;
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            margin-top: 0.25rem;
+            border: 1px solid var(--color-gray-300);
+            border-radius: 0.375rem;
+            box-shadow: var(--shadow-sm);
             font-size: 0.875rem;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-blue-500);
+            box-shadow: var(--ring-blue);
+        }
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-gray-700);
+        }
+        .btn {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: background-color 0.2s;
+        }
+        .btn-primary { background-color: var(--color-blue-600); color: var(--color-white); }
+        .btn-primary:hover { background-color: var(--color-blue-700); }
+        .btn-secondary { background-color: var(--color-gray-200); color: var(--color-gray-700); }
+        .btn-secondary:hover { background-color: var(--color-gray-300); }
+        .btn-green { background-color: var(--color-green-600); color: var(--color-white); }
+        .btn-green:hover { background-color: var(--color-green-700); }
+        .btn-red { background-color: var(--color-red-600); color: var(--color-white); }
+        .btn-red:hover { background-color: var(--color-red-700); }
+
+        /* --- Auth Screen --- */
+        #authScreen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: var(--color-gray-100);
+        }
+        #authFormContainer {
+            width: 100%;
+            max-width: 400px; /* max-w-md */
+            padding: 2rem; /* p-8 */
+            background-color: var(--color-white);
+            box-shadow: var(--shadow-xl);
+            border-radius: 1rem; /* rounded-2xl */
+        }
+        #loginForm, #signupForm {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* space-y-6 */
+        }
+        #authFormContainer h2 {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700;
+            text-align: center;
+            color: var(--color-gray-900);
+        }
+         #authFormContainer h3 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 500;
+            text-align: center;
+            color: var(--color-gray-700);
+            margin-top: -0.5rem; /* custom adjustment */
+        }
+        .auth-error {
+            font-size: 0.875rem;
+            text-align: center;
+            color: var(--color-red-600);
+            height: 1.25rem; /* h-5 */
+        }
+        .auth-link {
+            display: block;
+            font-size: 0.875rem;
+            text-align: center;
+            color: var(--color-blue-600);
+            cursor: pointer;
+        }
+        .auth-link:hover { text-decoration: underline; }
+
+        /* --- App Layout --- */
+        #appContainer {
+            height: 100vh;
+            /* display: flex; (applied via .md:flex) */
+        }
+        #sidebarNav {
+            display: none; /* hidden */
+            flex-direction: column;
+            justify-content: space-between;
+            width: 16rem; /* w-64 */
+            padding: 1rem; /* p-4 */
+            background-color: var(--color-white);
+            box-shadow: var(--shadow-lg);
+        }
+        #sidebarNav .logo {
+            padding: 0.5rem; /* px-2 py-4 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        #sidebarNav .logo h1 {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 700;
+            color: var(--color-blue-700);
+        }
+        #sidebarNav .logo p {
+            font-size: 0.75rem; /* text-xs */
+            color: var(--color-gray-500);
+        }
+        #sidebarNav ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; /* space-y-2 */ }
+        .tab-btn {
+            width: 100%;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem; /* gap-3 */
+            padding: 0.75rem 1rem; /* px-4 py-3 */
+            border-radius: 0.5rem; /* rounded-lg */
+            color: var(--color-gray-700);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .tab-btn:hover { background-color: var(--color-blue-50); color: var(--color-blue-600); }
+        .tab-btn i { width: 1.25rem; /* w-5 */ text-align: center; }
+        .tab-btn.active { background-color: var(--color-blue-600); color: var(--color-white); }
+        
+        #authInfoDesktop {
+            padding: 0.5rem; /* p-2 */
+            border-top: 1px solid var(--color-gray-200);
+        }
+        #authInfoDesktop .user-info { display: flex; align-items: center; gap: 0.5rem; /* gap-2 */ }
+        #userInitialsDesktop {
+            width: 2rem; /* w-8 */
+            height: 2rem; /* h-8 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-blue-100);
+            color: var(--color-blue-600);
+            border-radius: 9999px; /* rounded-full */
+            font-weight: 600;
+            font-size: 0.875rem; /* text-sm */
+        }
+        #userEmailDisplayDesktop {
+            flex: 1;
+            min-width: 0;
+            display: block;
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500;
             color: var(--color-gray-600);
-            max-width: 200px;
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
         }
+        #logoutButtonDesktop {
+            font-size: 0.75rem; /* text-xs */
+            color: var(--color-red-500);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        #logoutButtonDesktop:hover { text-decoration: underline; }
+
+        /* --- Main Content Area --- */
+        #mainContent {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        /* --- Mobile Nav --- */
+        #mobileNav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            padding: 0.5rem; /* p-2 */
+            background-color: var(--color-white);
+            box-shadow: var(--shadow-md);
+        }
+        #mobileNav .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        #mobileNav .header h1 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700;
+            color: var(--color-blue-700);
+        }
+        #authInfoMobile { display: flex; align-items: center; gap: 0.5rem; /* gap-2 */ }
+        #userEmailDisplayMobile {
+            display: block;
+            max-width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.75rem; /* text-xs */
+            padding: 0.25rem 0.5rem; /* p-1 px-2 */
+            background-color: var(--color-gray-200);
+            color: var(--color-gray-600);
+            border-radius: 0.25rem; /* rounded */
+        }
+        #logoutButtonMobile {
+            padding: 0.25rem 0.5rem; /* px-2 py-1 */
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 600;
+            color: var(--color-white);
+            background-color: var(--color-red-500);
+            border: none;
+            border-radius: 0.375rem; /* rounded-md */
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+        }
+        #logoutButtonMobile:hover { background-color: var(--color-red-600); }
+        
+        #mobileNav .tabs {
+            display: flex;
+            overflow-x: auto;
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+        .mobile-tab-btn {
+            flex-shrink: 0;
+            padding: 0.75rem 1rem; /* px-4 py-3 */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500;
+            color: var(--color-gray-600);
+            border-bottom: 2px solid transparent;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            cursor: pointer;
+        }
+        .mobile-tab-btn i { margin-right: 0.25rem; }
+        .mobile-tab-btn.active {
+             border-bottom-color: var(--color-blue-600);
+             color: var(--color-blue-600);
+        }
+
+        /* --- View Container --- */
+        #view-container {
+            flex: 1;
+            padding: 1rem; /* p-4 */
+        }
+
+        /* --- Cards --- */
+        .card {
+            padding: 1.5rem; /* p-6 */
+            background-color: var(--color-white);
+            box-shadow: var(--shadow-lg);
+            border-radius: 1rem; /* rounded-2xl */
+        }
+        .card-header {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600;
+            color: var(--color-gray-800);
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        
+        /* --- Grid Layout --- */
         .grid-container {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem; /* gap-6 */
         }
+        
+        /* --- Form Containers --- */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem; /* space-y-4 */
+        }
+
+        /* --- Tables --- */
+        .table-wrapper { overflow-x: auto; }
+        .table { min-width: 100%; border-collapse: collapse; divide-y: 1px solid var(--color-gray-200); }
+        .table thead { background-color: var(--color-gray-50); }
+        .table th {
+            padding: 0.75rem 1rem; /* px-4 py-3 */
+            text-align: left;
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 500;
+            color: var(--color-gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em; /* tracking-wider */
+        }
+        .table tbody { background-color: var(--color-white); divide-y: 1px solid var(--color-gray-200); }
+        .table tr:hover { background-color: var(--color-gray-50); }
+        .table td {
+            padding: 0.75rem 1rem; /* px-4 py-3 */
+            font-size: 0.875rem; /* text-sm */
+            white-space: nowrap;
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+        .table tbody tr:last-child td { border-bottom: none; }
+        .table-action-buttons {
+            display: flex;
+            gap: 0.75rem; /* space-x-3 */
+            justify-content: flex-end;
+        }
+        .table-action-buttons button, .table-action-icon {
+            background: none; border: none; cursor: pointer;
+            font-size: 1rem;
+        }
+        .table-action-icon:hover { opacity: 0.7; }
+        .icon-blue { color: var(--color-blue-600); }
+        .icon-red { color: var(--color-red-600); }
+        .icon-green { color: var(--color-green-600); }
+        .icon-yellow { color: var(--color-yellow-500); }
+
+        /* --- Invoice Form Specifics --- */
+        .invoice-header {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem; /* gap-4 */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .invoice-item-form {
+            padding: 1rem; /* p-4 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            border: 1px solid var(--color-gray-200);
+            border-radius: 0.5rem; /* rounded-lg */
+        }
+        .invoice-item-form h3 {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600;
+            color: var(--color-gray-700);
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+        #itemStockDisplay {
+            margin-left: 0.5rem; /* ml-2 */
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 500;
+        }
+        .stock-ok { color: var(--color-blue-600); }
+        .stock-low { color: var(--color-red-600); }
+        .form-input-readonly { background-color: var(--color-gray-100); }
+        
+        .invoice-totals {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .invoice-totals-box {
+            width: 100%;
+            max-width: 400px; /* max-w-sm */
+            padding: 1rem; /* p-4 */
+            background-color: var(--color-gray-50);
+            border-radius: 0.5rem; /* rounded-lg */
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem; /* space-y-2 */
+        }
+        .invoice-totals-box div { display: flex; justify-content: space-between; }
+        .invoice-totals-box span:first-child { font-weight: 600; color: var(--color-gray-700); }
+        .invoice-totals-box span:last-child { font-weight: 600; color: var(--color-gray-900); }
+        .invoice-totals-box hr { border-top: 1px solid var(--color-gray-300); }
+        .invoice-totals-box .grand-total {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700;
+            color: var(--color-gray-900);
+        }
+        
+        /* --- Modals --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow-y: auto; /* Added for scrollable modal */
+            padding: 1rem; /* Added for padding */
+        }
+        .modal-content {
+            width: 100%;
+            max-width: 600px; /* max-w-2xl */
+            margin: auto; /* Center modal */
+            padding: 1.5rem; /* p-6 */
+            background-color: var(--color-white);
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: var(--shadow-xl);
+        }
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 0.75rem; /* pb-3 */
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+        .modal-header h3 { font-size: 1.25rem; /* text-xl */ font-weight: 600; color: var(--color-gray-900); }
+        .modal-header .close-btn { font-size: 1.5rem; font-weight: 700; color: var(--color-gray-500); cursor: pointer; background: none; border: none; }
+        .modal-header .close-btn:hover { color: var(--color-gray-800); }
+        
+        .modal-content-small { max-width: 400px; /* max-w-md */ text-align: center; }
+        .delete-modal-icon {
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 3rem; /* h-12 */
+            width: 3rem; /* w-12 */
+            border-radius: 9999px; /* rounded-full */
+            background-color: var(--color-red-100);
+        }
+        .delete-modal-icon i { font-size: 1.25rem; /* text-xl */ color: var(--color-red-600); }
+        .delete-modal-content h3 { margin-top: 1rem; /* mt-4 */ font-size: 1.125rem; /* text-lg */ font-weight: 500; color: var(--color-gray-900); }
+        .delete-modal-content p { margin-top: 0.5rem; /* mt-2 */ font-size: 0.875rem; /* text-sm */ color: var(--color-gray-500); }
+        .delete-modal-buttons { margin-top: 1.5rem; /* mt-6 */ display: flex; justify-content: center; gap: 1rem; /* gap-4 */ }
+        .delete-modal-buttons .btn { width: auto; }
+
+        /* --- Toast Message --- */
+        #toastMessage {
+            position: fixed;
+            bottom: 1.25rem; /* bottom-5 */
+            right: 1.25rem; /* right-5 */
+            z-index: 100; /* Ensure toast is on top */
+            padding: 0.75rem 1.5rem; /* px-6 py-3 */
+            color: var(--color-white);
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: var(--shadow-lg);
+            transition: opacity 0.3s;
+        }
+        #toastMessage.bg-green { background-color: var(--color-green-600); }
+        #toastMessage.bg-red { background-color: var(--color-red-600); }
+
+        /*
+        --- START: NEW ADVANCED DASHBOARD STYLES ---
+        */
+        .dashboard-tab-btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-gray-600);
+            border-bottom: 3px solid transparent;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            cursor: pointer;
+            margin-bottom: -2px; /* Aligns with the bottom border */
+        }
+        .dashboard-tab-btn i { margin-right: 0.5rem; }
+        .dashboard-tab-btn.active {
+             border-bottom-color: var(--color-blue-600);
+             color: var(--color-blue-600);
+        }
+        
+        .dashboard-search-bar {
+            display: flex;
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .dashboard-search-bar .icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-gray-500);
+        }
+        .dashboard-search-bar .form-input {
+            margin-top: 0;
+            padding-left: 2.5rem; /* space for icon */
+        }
+        
+        .dashboard-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem; /* space-y-2 */
+            max-height: 60vh; /* Make list scrollable */
+            overflow-y: auto;
+            padding-right: 0.5rem; /* for scrollbar */
+        }
+        
+        .date-group .date-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--color-gray-100);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-gray-700);
+            cursor: pointer;
+            text-align: left;
+        }
+        .date-group .date-header:hover {
+            background-color: var(--color-gray-200);
+        }
+        .date-group .date-header span:last-child {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-gray-500);
+        }
+        .date-group .date-header i {
+            transition: transform 0.2s;
+        }
+        .date-group .date-header.expanded i {
+            transform: rotate(90deg);
+        }
+        
+        .bill-list {
+            padding-left: 1rem;
+            border-left: 2px solid var(--color-blue-200);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem; /* space-y-2 */
+            margin-top: 0.5rem;
+        }
+        
+        .bill-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+        .bill-list-item:hover {
+            box-shadow: var(--shadow-sm);
+            border-color: var(--color-blue-500);
+        }
+        .bill-list-item div:first-child {
+            font-size: 0.875rem;
+            color: var(--color-gray-800);
+        }
+        .bill-list-item div:first-child strong {
+            color: var(--color-blue-700);
+            font-weight: 600;
+        }
+        .bill-list-item .bill-item-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.25rem;
+        }
+        .bill-list-item .bill-item-details span:first-child {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-gray-900);
+        }
+        .bill-list-item .bill-item-details span:last-child {
+            font-size: 0.75rem;
+            color: var(--color-gray-500);
+        }
+        /*
+        --- END: NEW ADVANCED DASHBOARD STYLES ---
+        */
+
+
+        /* --- Helper Classes --- */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        .font-semibold { font-weight: 600; }
+        .text-yellow-600 { color: var(--color-yellow-600); }
+        .text-green-600 { color: var(--color-green-600); }
+        .text-red-600 { color: var(--color-red-600); }
+        .text-red-500 { color: var(--color-red-500); }
+        .text-xs { font-size: 0.75rem; }
+        .text-right { text-align: right; }
+        .w-auto { width: auto; }
+        
+        /* --- Responsive Styles --- */
         @media (min-width: 768px) {
+            #appContainer { display: flex; }
+            #sidebarNav { display: flex; }
+            #mobileNav { display: none; }
+            #view-container { padding: 1.5rem; /* md:p-6 */ }
             .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
             .md\:col-span-1 { grid-column: span 1 / span 1; }
             .md\:col-span-2 { grid-column: span 2 / span 2; }
             .md\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
-            .md\:grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
             .md\:grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+            .invoice-header { flex-direction: row; align-items: center; }
+            .btn-responsive-w { width: auto; }
         }
-        .tabs-nav {
-            background-color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border-radius: 0.5rem;
-            padding: 0.5rem; /* p-2 */
-            margin-bottom: 1rem; /* mb-4 */
-        }
-        .tabs-container {
-            display: flex;
-            border-bottom: 1px solid var(--color-gray-300);
-        }
-        .tab-btn {
-            padding: 1rem; /* p-4 */
-            color: var(--color-gray-600);
-            border-bottom: 2px solid transparent;
-            background: none; border: none; cursor: pointer; font-size: 1rem;
-        }
-        .tab-btn:hover { color: var(--color-blue-600); }
-        .tab-btn.active { border-bottom-color: var(--color-blue-600); color: var(--color-blue-600); font-weight: 600; }
-        .tab-btn i { margin-right: 0.5rem; }
-        .form-container { display: flex; flex-direction: column; gap: 1rem; }
-        .form-label { display: block; font-size: 0.875rem; font-weight: 500; color: var(--color-gray-700); margin-bottom: 0.25rem; }
-        .form-input, .form-textarea, .form-select {
-            display: block; width: 100%; border: 1px solid var(--color-gray-300); border-radius: 0.375rem;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); padding: 0.5rem 0.75rem; font-size: 1rem;
-        }
-        .form-textarea { resize: vertical; }
-        .form-input-readonly { background-color: var(--color-gray-100); }
-        #itemStockDisplay { font-size: 0.75rem; font-weight: 500; color: var(--color-blue-600); margin-left: 0.5rem; }
-        .btn {
-            width: 100%; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 600; border: none;
-            cursor: pointer; transition: background-color 0.2s;
-        }
-        .btn-sm { padding: 0.25rem 0.5rem; font-size: 0.875rem; width: auto;} /* छोटा बटन */
-        .btn-primary { background-color: var(--color-blue-600); color: #ffffff; }
-        .btn-primary:hover { background-color: var(--color-blue-700); }
-        .btn-secondary { background-color: var(--color-gray-300); color: var(--color-gray-800); margin-top: 0.5rem; }
-        .btn-secondary:hover { background-color: var(--color-gray-400); }
-        .btn-green { background-color: var(--color-green-600); color: #ffffff; }
-        .btn-green:hover { background-color: var(--color-green-700); }
-        .btn-red { background-color: var(--color-red-600); color: #ffffff; }
-        .btn-red:hover { background-color: var(--color-red-700); }
-        .btn-icon { background: none; border: none; cursor: pointer; font-size: 1rem; padding: 0.25rem; }
-        .btn-icon-blue { color: var(--color-blue-600); } .btn-icon-blue:hover { color: var(--color-blue-700); }
-        .btn-icon-red { color: var(--color-red-600); } .btn-icon-red:hover { color: var(--color-red-700); }
-        .btn-icon-orange { color: #F97316; } .btn-icon-orange:hover { color: #EA580C; }
-        .btn-icon-green { color: var(--color-green-600); } .btn-icon-green:hover { color: var(--color-green-700); }
-        .table-wrapper { overflow-x: auto; }
-        .table { min-width: 100%; border-collapse: collapse; divide-y: 1px solid var(--color-gray-300); }
-        .table thead { background-color: var(--color-gray-100); }
-        .table th { padding: 0.75rem 1rem; text-align: left; font-size: 0.75rem; font-weight: 500; color: var(--color-gray-500); text-transform: uppercase; }
-        .table tbody { background-color: #ffffff; divide-y: 1px solid var(--color-gray-300); }
-        .table td { padding: 1rem 1rem; white-space: nowrap; border-bottom: 1px solid var(--color-gray-300); }
-        .table tbody tr:last-child td { border-bottom: none; }
-        .modal-overlay { position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.5); overflow-y: auto; width: 100%; height: 100%; z-index: 50; }
-        .modal-content { position: relative; margin: 5rem auto; padding: 1.25rem; border: 1px solid var(--color-gray-300); width: 90%; max-width: 48rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); border-radius: 0.375rem; background-color: #ffffff; }
-        .modal-content-small { max-width: 28rem; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-        .modal-header h3 { font-size: 1.5rem; font-weight: 600; }
-        .modal-header .close-btn { font-size: 2rem; font-weight: bold; color: var(--color-gray-500); background: none; border: none; cursor: pointer; }
-        .modal-header .close-btn:hover { color: var(--color-gray-800); }
-        .delete-modal-icon { margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; height: 3rem; width: 3rem; border-radius: 9999px; background-color: #FEE2E2; }
-        .delete-modal-icon i { color: var(--color-red-600); font-size: 1.25rem; }
-        .delete-modal-content { text-align: center; }
-        .delete-modal-content h3 { font-size: 1.125rem; line-height: 1.5rem; font-weight: 500; color: var(--color-gray-800); }
-        .delete-modal-content p { margin-top: 0.5rem; padding: 0 1.75rem 0.75rem; font-size: 0.875rem; color: var(--color-gray-500); }
-        .delete-modal-buttons { padding: 0.75rem 1rem; }
-        .delete-modal-buttons .btn { width: auto; margin-left: 0.75rem; }
-        #toastMessage { position: fixed; bottom: 1.25rem; right: 1.25rem; color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); z-index: 50; transition: opacity 0.3s; }
-        #toastMessage.bg-green { background-color: var(--color-green-600); }
-        #toastMessage.bg-red { background-color: var(--color-red-600); }
-        .flex-between { display: flex; justify-content: space-between; align-items: center; }
-        .flex-end { display: flex; justify-content: flex-end; }
-        .text-right { text-align: right; } .font-semibold { font-weight: 600; } .text-xl { font-size: 1.25rem; }
-        .font-bold { font-weight: 700; } .text-xs { font-size: 0.75rem; } .text-red-500 { color: #EF4444; }
-        .text-yellow-600 { color: #CA8A04; } .text-green-600 { color: #16A34A; } .text-red-600 { color: #DC2626; }
-        .space-y-2 > * + * { margin-top: 0.5rem; }
-        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
-        
-        /* लॉगिन स्क्रीन स्टाइल्स */
-        #authScreen {
-            display: flex; justify-content: center; align-items: center; min-height: 80vh;
-        }
-        #authFormContainer {
-            width: 100%; max-width: 400px;
-        }
-        #authFormContainer h2 { text-align: center; margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 600; }
-        .auth-error { color: var(--color-red-600); margin-top: 0.5rem; font-size: 0.875rem; text-align: center; height: 1.2em; } /* एरर के लिए जगह आरक्षित */
-        .auth-link { color: var(--color-blue-600); cursor: pointer; text-decoration: underline; font-size: 0.875rem; margin-top: 1rem; display: block; text-align: center; }
 
-        /* प्रिंट के लिए विशेष CSS */
+        /* --- Print Styles --- */
         @media print {
             body {
-                background-color: #fff; /* प्रिंट में सफेद पृष्ठभूमि */
-                font-size: 10px; /* छोटा फॉन्ट */
+                background-color: #fff;
+                font-size: 10px;
                 line-height: 1.3;
             }
-            .container {
-                padding: 0; /* कंटेनर पैडिंग हटाएं */
-                max-width: none;
-            }
             .no-print {
-                display: none !important; /* नो-प्रिंट आइटम छिपाएं */
+                display: none !important;
             }
             #print-area {
-                visibility: visible !important; /* प्रिंट एरिया दिखाएं */
-                position: static; /* स्थिति सामान्य करें */
+                visibility: visible !important;
+                position: static;
                 width: 100%;
-                font-family: 'Arial', sans-serif; /* सादा फॉन्ट */
+                font-family: 'Arial', sans-serif;
                 color: #000;
+                padding: 0;
+                margin: 0;
             }
-             /* सभी बच्चों को विज़िबल करें (अगर जरूरत हो) */
             #print-area * {
                 visibility: visible !important;
             }
-            .card {
-                 box-shadow: none; /* कार्ड शैडो हटाएं */
-                 border: none;
-                 padding: 0;
-            }
 
-            /* पेज साइज़ और मार्जिन सेट करें (A5 हटाया गया) */
             @page {
-                margin: 1cm; /* मार्जिन */
-                /* हेडर/फुटर हटाने की कोशिश */
-                @top-center { content: ""; }
-                @bottom-center { content: ""; }
+                margin: 0.5cm;
             }
             
-            /* प्रिंट स्टाइल को ओवरराइड करें (यह सुनिश्चित करने के लिए कि प्रिंट एरिया दिखता है) */
             body * {
                 visibility: hidden;
             }
@@ -234,221 +715,393 @@
                 width: 100%;
             }
 
-            /* प्रिंट टेबल के लिए लाइनें और छोटा फॉन्ट */
             .print-table {
-                font-size: 9px; /* और छोटा फॉन्ट */
-                border: 1px solid #666; /* टेबल बॉर्डर */
+                font-size: 9px;
+                border: 1px solid #666;
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 5px;
             }
             .print-table th, .print-table td {
-                border: 1px solid #ccc; /* सेल बॉर्डर (पतला) */
-                padding: 0.3rem; /* पैडिंग कम करें */
-                white-space: normal; /* टेक्स्ट रैप करने दें */
-                word-break: break-word; /* लंबे शब्दों को तोड़ें */
+                border: 1px solid #ccc;
+                padding: 0.3rem;
+                white-space: normal;
+                word-break: break-word;
             }
-             .print-table th {
+            .print-table th {
                  background-color: #eee;
                  font-weight: bold;
-             }
-
-            /* अन्य प्रिंट स्टाइल को एडजस्ट करें */
-            .print-p-8 { padding: 0; } /* प्रिंट एरिया में पैडिंग हटाएं */
-            .print-mb-6 { margin-bottom: 0.8rem; }
-            .print-text-xl { font-size: 1.1rem; }
-            .print-text-lg { font-size: 1rem; }
-            .print-text-sm { font-size: 0.8rem; }
-             /* कंपनी और बायर डिटेल्स के बीच लाइन */
+            }
+            .print-detail-table {
+                 width: 100%; 
+                 border-collapse: collapse; 
+                 margin-top: 5px; 
+                 border-top: 1px solid #666; 
+                 border-bottom: 1px solid #666;
+            }
             .print-detail-table td {
                  border-right: 1px solid #ccc;
                  padding: 0.3rem;
+                 vertical-align: top;
             }
             .print-detail-table td:last-child {
                  border-right: none;
             }
-            .print-summary-table td { padding: 0.2rem 0.3rem; }
+            .print-summary-table {
+                width: 100%;
+            }
+            .print-summary-table td { 
+                padding: 0.2rem 0.3rem; 
+            }
         }
     </style>
 </head>
-<body>
+<body class="h-full">
 
-    <!-- लॉगिन/साइनअप स्क्रीन -->
     <div id="authScreen">
-        <div id="authFormContainer" class="card">
-            <!-- लॉगिन फ़ॉर्म (डिफ़ॉल्ट) -->
-            <form id="loginForm" class="form-container">
-                <h2>लॉगिन करें</h2>
+        <div id="authFormContainer">
+            <form id="loginForm">
+                <h2>RADHE KRISHNA TRADERS</h2>
+                <h3>Login</h3>
                 <div>
-                    <label for="loginEmail" class="form-label">ईमेल</label>
-                    <input type="email" id="loginEmail" class="form-input" required>
+                    <label for="loginEmail" class="form-label">Email</label>
+                    <input type="email" id="loginEmail" required class="form-input">
                 </div>
                 <div>
-                    <label for="loginPassword" class="form-label">पासवर्ड</label>
-                    <input type="password" id="loginPassword" class="form-input" required>
+                    <label for="loginPassword" class="form-label">Password</label>
+                    <input type="password" id="loginPassword" required class="form-input">
                 </div>
-                <button type="submit" class="btn btn-primary">लॉगिन</button>
+                <button type="submit" class="btn btn-primary">Login</button>
                 <div id="loginError" class="auth-error"></div>
-                <span class="auth-link" onclick="toggleAuthForms()">नया अकाउंट बनाएँ</span>
+                <span class="auth-link" onclick="toggleAuthForms()">Create a new account</span>
             </form>
 
-            <!-- साइनअप फ़ॉर्म (छिपा हुआ) -->
-            <form id="signupForm" class="form-container hidden">
-                <h2>नया अकाउंट बनाएँ</h2>
+            <form id="signupForm" class="hidden">
+                <h2>RADHE KRISHNA TRADERS</h2>
+                <h3>Create New Account</h3>
                 <div>
-                    <label for="signupEmail" class="form-label">ईमेल</label>
-                    <input type="email" id="signupEmail" class="form-input" required>
+                    <label for="signupEmail" class="form-label">Email</label>
+                    <input type="email" id="signupEmail" required class="form-input">
                 </div>
                 <div>
-                    <label for="signupPassword" class="form-label">पासवर्ड (कम से कम 6 अक्षर)</label>
-                    <input type="password" id="signupPassword" class="form-input" required minlength="6">
+                    <label for="signupPassword" class="form-label">Password (min. 6 characters)</label>
+                    <input type="password" id="signupPassword" required minlength="6" class="form-input">
                 </div>
-                <button type="submit" class="btn btn-primary">साइन अप</button>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
                 <div id="signupError" class="auth-error"></div>
-                <span class="auth-link" onclick="toggleAuthForms()">पहले से अकाउंट है? लॉगिन करें</span>
+                <span class="auth-link" onclick="toggleAuthForms()">Already have an account? Login</span>
             </form>
         </div>
     </div>
 
-    <!-- मुख्य ऐप कंटेनर (छिपा हुआ) -->
-    <div id="appContainer" class="container hidden">
+    <div id="appContainer" class="hidden">
         
-        <!-- हेडर -->
-        <header class="card header no-print">
-            <!-- <h1>अंश चावला - व्यापार मैनेजर</h1> --> <!-- यह लाइन हटा दी गई है -->
-            <div id="authInfo">
-                <span id="userEmailDisplay">लोड हो रहा है...</span>
-                <button id="logoutButton" class="btn btn-secondary btn-sm no-print">लॉगआउट</button>
+        <nav id="sidebarNav" class="no-print">
+            <div>
+                <div class="logo">
+                    <h1>R. K. TRADERS</h1>
+                    <p>Billing Software</p>
+                </div>
+                <ul>
+                    <li><button class="tab-btn" onclick="showView('dashboardView')"><i class="w-5 text-center fas fa-tachometer-alt"></i>Dashboard</button></li>
+                    <li><button class="tab-btn" onclick="showView('customersView')"><i class="w-5 text-center fas fa-users"></i>Customers</button></li>
+                    <li><button class="tab-btn" onclick="showView('productsView')"><i class="w-5 text-center fas fa-box-open"></i>Products</button></li>
+                    <li><button class="tab-btn" onclick="showView('invoicesView')"><i class="w-5 text-center fas fa-file-invoice-dollar"></i>Invoices / Estimates</button></li>
+                    <li><button class="tab-btn" onclick="showView('purchasesView')"><i class="w-5 text-center fas fa-shopping-cart"></i>Purchases</button></li>
+                </ul>
             </div>
-        </header>
-
-        <!-- नेविगेशन टैब्स -->
-        <nav class="tabs-nav no-print">
-            <div class="tabs-container">
-                <button class="tab-btn" onclick="showView('dashboardView')"><i class="fas fa-tachometer-alt"></i>डैशबोर्ड</button>
-                <button class="tab-btn" onclick="showView('customersView')"><i class="fas fa-users"></i>ग्राहक</button>
-                <button class="tab-btn" onclick="showView('productsView')"><i class="fas fa-box-open"></i>प्रोडक्ट्स</button>
-                <button class="tab-btn" onclick="showView('invoicesView')"><i class="fas fa-file-invoice-dollar"></i>बिल / एस्टीमेट</button>
-                <button class="tab-btn" onclick="showView('purchasesView')"><i class="fas fa-shopping-cart"></i>खरीद (Purchase)</button>
+             <div id="authInfoDesktop">
+                <div class="user-info">
+                    <div id="userInitialsDesktop">...</div>
+                    <div style="flex: 1; min-width: 0;">
+                        <span id="userEmailDisplayDesktop">Loading...</span>
+                        <button id="logoutButtonDesktop">Logout</button>
+                    </div>
+                </div>
             </div>
         </nav>
 
-        <!-- व्यू कंटेनर -->
-        <main id="view-container">
-
-            <!-- 1. डैशबोर्ड व्यू -->
-            <div id="dashboardView" class="view-content card">
-                <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">नमस्ते, आपके व्यापार में स्वागत है!</h2>
-                <p>यह सॉफ्टवेयर सिर्फ आपके इस्तेमाल के लिए है।</p>
-                <p style="margin-top: 0.5rem;">ऊपर दिए गए टैब का उपयोग करके ग्राहक जोड़ें, प्रोडक्ट मैनेज करें या नया बिल बनाएँ।</p>
-            </div>
-
-            <!-- 2. ग्राहक व्यू -->
-            <div id="customersView" class="view-content hidden">
-                 <div class="grid-container md:grid-cols-3">
-                    <div class="md:col-span-1 card">
-                        <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">नया ग्राहक जोड़ें</h2>
-                        <form id="customerForm" class="form-container">
-                            <div><label for="customerName" class="form-label">ग्राहक का नाम / दुकान का नाम</label><input type="text" id="customerName" class="form-input" required></div>
-                            <div><label for="customerGstin" class="form-label">GSTIN (वैकल्पिक)</label><input type="text" id="customerGstin" class="form-input"></div>
-                            <div><label for="customerAddress" class="form-label">पता (वैकल्पिक)</label><textarea id="customerAddress" rows="3" class="form-textarea"></textarea></div>
-                            <input type="hidden" id="customerId">
-                            <button type="submit" class="btn btn-primary">सेव करें</button>
-                            <button type="button" onclick="resetCustomerForm()" class="btn btn-secondary">कैंसल</button>
-                        </form>
-                    </div>
-                    <div class="md:col-span-2 card">
-                        <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">ग्राहकों की सूची</h2>
-                        <div class="table-wrapper"><table class="table"><thead><tr><th>नाम</th><th>GSTIN</th><th>एक्शन</th></tr></thead><tbody id="customerList"></tbody></table></div>
-                    </div>
+        <div id="mainContent">
+            
+            <nav id="mobileNav" class="no-print">
+                <div class="header">
+                     <h1>R. K. TRADERS</h1>
+                     <div id="authInfoMobile">
+                         <span id="userEmailDisplayMobile">Loading...</span>
+                         <button id="logoutButtonMobile">Logout</button>
+                     </div>
                 </div>
-            </div>
-
-            <!-- 3. प्रोडक्ट्स व्यू -->
-            <div id="productsView" class="view-content hidden">
-                <div class="grid-container md:grid-cols-3">
-                    <div class="md:col-span-1 card">
-                        <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">नया प्रोडक्ट जोड़ें</h2>
-                        <form id="productForm" class="form-container">
-                            <div><label for="productName" class="form-label">प्रोडक्ट का नाम</label><input type="text" id="productName" class="form-input" required></div>
-                            <div><label for="productHsn" class="form-label">HSN नंबर (वैकल्पिक)</label><input type="text" id="productHsn" class="form-input"></div>
-                            <div><label for="productMrp" class="form-label">MRP (वैकल्पिक)</label><input type="number" step="0.01" id="productMrp" class="form-input"></div>
-                            <div><label for="productRate" class="form-label">रेट (टैक्स के बिना)</label><input type="number" step="0.01" id="productRate" class="form-input" required></div>
-                            <div><label for="productGst" class="form-label">GST (%) (टोटल)</label><input type="number" step="0.01" id="productGst" class="form-input" required></div>
-                            <div><label for="productStock" class="form-label">शुरुआती स्टॉक (Qty)</label><input type="number" step="1" id="productStock" class="form-input" value="0"></div>
-                            <input type="hidden" id="productId">
-                            <button type="submit" class="btn btn-primary">सेव करें</button>
-                            <button type="button" onclick="resetProductForm()" class="btn btn-secondary">कैंसल</button>
-                        </form>
-                    </div>
-                    <div class="md:col-span-2 card">
-                         <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">प्रोडक्ट्स की सूची</h2>
-                        <div class="table-wrapper"><table class="table"><thead><tr><th>नाम</th><th>HSN</th><th>MRP</th><th>रेट</th><th>GST</th><th>स्टॉक में</th><th>एक्शन</th></tr></thead><tbody id="productList"></tbody></table></div>
-                    </div>
+                <div class="tabs">
+                    <button class="mobile-tab-btn" onclick="showView('dashboardView')"><i class="mr-1 fas fa-tachometer-alt"></i> Dashboard</button>
+                    <button class="mobile-tab-btn" onclick="showView('customersView')"><i class="mr-1 fas fa-users"></i> Customers</button>
+                    <button class="mobile-tab-btn" onclick="showView('productsView')"><i class="mr-1 fas fa-box-open"></i> Products</button>
+                    <button class="mobile-tab-btn" onclick="showView('invoicesView')"><i class="mr-1 fas fa-file-invoice-dollar"></i> Invoices</button>
+                    <button class="mobile-tab-btn" onclick="showView('purchasesView')"><i class="mr-1 fas fa-shopping-cart"></i> Purchases</button>
                 </div>
-            </div>
+            </nav>
 
-            <!-- 4. बिल / एस्टीमेट व्यू -->
-            <div id="invoicesView" class="view-content card hidden">
-                 <div class="flex-between" style="flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
-                    <h2 style="font-size: 1.5rem; font-weight: 600;">बिल / एस्टीमेट सूची</h2>
-                    <div style="flex-grow: 1; max-width: 320px;"><label for="searchInvoices" class="sr-only">बिल खोजें</label><input type="text" id="searchInvoices" onkeyup="filterInvoices()" placeholder="ग्राहक के नाम या बिल नंबर से खोजें..." class="form-input"></div>
-                    <button onclick="showCreateInvoiceView()" class="btn btn-green" style="width: auto;"><i class="fas fa-plus" style="margin-right: 0.5rem;"></i>नया बनाएँ</button>
-                </div>
-                <div class="table-wrapper"><table class="table"><thead><tr><th>#</th><th>प्रकार</th><th>ग्राहक</th><th>तारीख</th><th>कुल राशि</th><th>स्थिति</th><th>एक्शन</th></tr></thead><tbody id="invoiceList"></tbody></table></div>
-            </div>
+            <main id="view-container">
 
-            <!-- 5. खरीद (Purchase) व्यू -->
-            <div id="purchasesView" class="view-content card hidden">
-                <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">मेरी खरीदारी (Purchases)</h2>
-                <p>यह सेक्शन अभी निर्माणाधीन है। यहाँ आप अपनी खरीदारी (purchase bills) की एंट्री कर पाएँगे।</p>
-            </div>
-
-            <!-- 6. नया बिल/एस्टीमेट बनाने का व्यू -->
-            <div id="createInvoiceView" class="view-content card hidden">
-                <form id="invoiceForm">
-                    <div class="flex-between" style="margin-bottom: 1rem;"><h2 style="font-size: 1.5rem; font-weight: 600;" id="invoiceFormTitle">नया बिल बनाएँ</h2><button type="button" onclick="showView('invoicesView')" class="btn btn-secondary" style="width: auto; margin-top: 0;">वापस जाएँ</button></div>
-                    <div class="grid-container md:grid-cols-4" style="margin-bottom: 1.5rem;">
-                        <div><label for="invoiceCustomer" class="form-label">ग्राहक चुनें</label><select id="invoiceCustomer" class="form-select" required><option value="">-- ग्राहक चुनें --</option></select></div>
-                        <div><label for="invoiceType" class="form-label">प्रकार (Type)</label><select id="invoiceType" class="form-select" required><option value="invoice">GST बिल (Invoice)</option><option value="estimate">एस्टीमेट (Estimate)</option></select></div>
-                        <div><label for="invoiceDate" class="form-label">तारीख</label><input type="date" id="invoiceDate" class="form-input" required></div>
-                        <div><label for="invoiceNumber" class="form-label">बिल नंबर</label><input type="text" id="invoiceNumber" class="form-input" required></div>
+                <div id="dashboardView" class="view-content card">
+                    <h2 class="card-header">Dashboard</h2>
+                    
+                    <div class="dashboard-tabs no-print" style="display: flex; border-bottom: 2px solid var(--color-gray-200);">
+                        <button id="dash-tab-gst" class="dashboard-tab-btn active" onclick="showDashboardTab('gst')">
+                            <i class="fas fa-file-invoice-dollar"></i> GST Bills
+                        </button>
+                        <button id="dash-tab-estimate" class="dashboard-tab-btn" onclick="showDashboardTab('estimate')">
+                            <i class="fas fa-file-alt"></i> Estimates
+                        </button>
                     </div>
-                    <div style="border: 1px solid var(--color-gray-300); border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem;">
-                        <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem;">आइटम जोड़ें</h3>
-                        <div class="grid-container md:grid-cols-6">
-                            <div class="md:col-span-2"><label class="form-label">प्रोडक्ट</label><select id="invoiceAddItem" class="form-select"><option value="">-- प्रोडक्ट चुनें --</option></select></div>
-                            <div><label class="form-label">मात्रा (Qty)<span id="itemStockDisplay"></span></label><input type="number" id="invoiceAddItemQty" class="form-input" value="1"></div>
-                            <div><label class="form-label">फ्री (Pcs)</label><input type="number" id="invoiceAddItemFree" class="form-input" value="0"></div>
-                            <div><label class="form-label">रेट</label><input type="number" id="invoiceAddItemRate" class="form-input form-input-readonly" readonly></div>
-                            <div><label class="form-label">डिस्काउंट %</label><input type="number" id="invoiceAddItemDisc" class="form-input" value="0"></div>
+                    
+                    <div class="dashboard-search-bar no-print" style="margin-top: 1.5rem;">
+                        <span class="icon"><i class="fas fa-search"></i></span>
+                        <input type="text" id="dashboardSearchInput" onkeyup="renderDashboardLists()" placeholder="Search by Customer Name or Bill No..." class="form-input">
+                    </div>
+                    
+                    <div id="dash-content-gst" class="dashboard-tab-content">
+                        <div id="dash-content-gst-grouped" class="dashboard-list-container">
+                            <p>Loading GST bills...</p>
                         </div>
-                        <div style="margin-top: 1rem;"><button type="button" id="addItemButton" class="btn btn-primary" style="margin-top: 0.25rem;">आइटम जोड़ें</button></div>
+                        <div id="dash-content-gst-search" class="dashboard-list-container hidden" style="gap: 0.5rem;">
+                            </div>
                     </div>
-                    <div class="table-wrapper" style="margin-bottom: 1.5rem;"><table class="table"><thead><tr><th>प्रोडक्ट</th><th>HSN</th><th>MRP</th><th>Qty</th><th>फ्री</th><th>रेट</th><th>Disc %</th><th>टैक्सेबल</th><th>CGST</th><th>SGST</th><th>कुल</th><th>एक्शन</th></tr></thead><tbody id="invoiceItemsList"></tbody></table></div>
-                    <div class="flex-end" style="margin-bottom: 1.5rem;">
-                        <div style="width: 100%; max-width: 400px;" class="space-y-2">
-                            <div class="flex-between"><span class="font-semibold">सब-टोटल (Taxable):</span><span id="invoiceSubtotal" class="font-semibold">₹0.00</span></div>
-                            <div class="flex-between"><span class="font-semibold">GST (टोटल):</span><span id="invoiceTotalGst" class="font-semibold">₹0.00</span></div>
-                            <hr style="border-top: 1px solid var(--color-gray-300); margin: 0.5rem 0;">
-                            <div class="flex-between text-xl font-bold"><span>ग्रैंड टोटल:</span><span id="invoiceGrandTotal">₹0.00</span></div>
+                    
+                    <div id="dash-content-estimate" class="dashboard-tab-content hidden">
+                        <div id="dash-content-estimate-grouped" class="dashboard-list-container">
+                            <p>Loading estimates...</p>
+                        </div>
+                        <div id="dash-content-estimate-search" class="dashboard-list-container hidden" style="gap: 0.5rem;">
+                            </div>
+                    </div>
+                </div>
+                <div id="customersView" class="view-content hidden">
+                     <div class="grid-container md:grid-cols-3">
+                        <div class="md:col-span-1 card">
+                            <h2 class="card-header">Add New Customer</h2>
+                            <form id="customerForm" class="form-container">
+                                <div>
+                                    <label for="customerName" class="form-label">Customer Name / Shop Name</label>
+                                    <input type="text" id="customerName" required class="form-input">
+                                </div>
+                                <div>
+                                    <label for="customerGstin" class="form-label">GSTIN (Optional)</label>
+                                    <input type="text" id="customerGstin" class="form-input">
+                                </div>
+                                <div>
+                                    <label for="customerAddress" class="form-label">Address (Optional)</label>
+                                    <textarea id="customerAddress" rows="3" class="form-textarea"></textarea>
+                                </div>
+                                <input type="hidden" id="customerId">
+                                <button type="submit" class="btn btn-primary">Save Customer</button>
+                                <button type="button" onclick="resetCustomerForm()" class="btn btn-secondary">Cancel</button>
+                            </form>
+                        </div>
+                        <div class="md:col-span-2 card">
+                            <h2 class="card-header">Customer List</h2>
+                            <div class="table-wrapper">
+                                <table class="table">
+                                    <thead><tr>
+                                        <th>Name</th>
+                                        <th>GSTIN</th>
+                                        <th class="text-right">Actions</th>
+                                    </tr></thead>
+                                    <tbody id="customerList"></tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div class="text-right"><button type="submit" class="btn btn-green" style="width: auto; font-size: 1.125rem; padding: 0.5rem 1.5rem;">बिल सेव करें</button></div>
+                </div>
+
+                <div id="productsView" class="view-content hidden">
+                    <div class="grid-container md:grid-cols-3">
+                        <div class="md:col-span-1 card">
+                             <h2 class="card-header">Add New Product</h2>
+                            <form id="productForm" class="form-container">
+                                <div><label for="productName" class="form-label">Product Name</label><input type="text" id="productName" required class="form-input"></div>
+                                <div><label for="productHsn" class="form-label">HSN (Optional)</label><input type="text" id="productHsn" class="form-input"></div>
+                                <div><label for="productMrp" class="form-label">MRP (Optional)</label><input type="number" step="0.01" id="productMrp" class="form-input"></div>
+                                <div><label for="productRate" class="form-label">Rate (before Tax)</label><input type="number" step="0.01" id="productRate" required class="form-input"></div>
+                                <div><label for="productGst" class="form-label">GST (%) (Total)</label><input type="number" step="0.01" id="productGst" required class="form-input"></div>
+                                <div><label for="productStock" class="form-label">Initial / New Stock (Qty)</label><input type="number" step="1" id="productStock" value="0" class="form-input"></div>
+                                <input type="hidden" id="productId">
+                                <button type="submit" class="btn btn-primary">Save Product</button>
+                                <button type="button" onclick="resetProductForm()" class="btn btn-secondary">Cancel</button>
+                            </form>
+                        </div>
+                        <div class="md:col-span-2 card">
+                            <h2 class="card-header">Product List</h2>
+                            <div class="table-wrapper">
+                                <table class="table">
+                                    <thead><tr>
+                                        <th>Name</th>
+                                        <th>HSN</th>
+                                        <th>MRP</th>
+                                        <th>Rate</th>
+                                        <th>GST</th>
+                                        <th>Stock</th>
+                                        <th class="text-right">Actions</th>
+                                    </tr></thead>
+                                    <tbody id="productList"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="invoicesView" class="view-content card hidden">
+                     <div class="invoice-header">
+                        <h2 class="card-header" style="margin-bottom: 0;">Invoices / Estimates List</h2>
+                        <div style="flex-grow: 1; max-width: 400px;">
+                            <label for="searchInvoices" class="sr-only">Search Invoices</label>
+                            <input type="text" id="searchInvoices" onkeyup="filterInvoices()" placeholder="Search by customer name or bill no..." class="form-input" style="margin-top: 0;">
+                        </div>
+                        <button onclick="showCreateInvoiceView()" class="btn btn-green btn-responsive-w" style="display:inline-flex; justify-content:center; align-items:center; gap: 0.5rem; width: 100%;">
+                            <i class="fas fa-plus"></i>Create New
+                        </button>
+                    </div>
+                    <div class="table-wrapper" style="margin-top: 1rem;">
+                        <table class="table">
+                            <thead><tr>
+                                <th>#</th>
+                                <th>Type</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+                                <th class="text-right">Actions</th>
+                            </tr></thead>
+                            <tbody id="invoiceList"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="purchasesView" class="view-content card hidden">
+                    <h2 class="card-header">My Purchases</h2>
+                    <p>This section is currently under construction. You will be able to log your purchase bills here.</p>
+                    <p style="margin-top: 1rem;">To add new stock, please go to the 'Products' tab, 'Edit' a product, and increase the 'Stock (Qty)' field, then 'Save'.</p>
+                </div>
+
+                <div id="createInvoiceView" class="view-content card hidden">
+                    <form id="invoiceForm">
+                        <div class="invoice-header">
+                            <h2 id="invoiceFormTitle" class="card-header" style="margin-bottom: 0;">Create New Invoice</h2>
+                            <button type="button" onclick="showView('invoicesView')" class="btn btn-secondary btn-responsive-w" style="width: 100%;">Go Back</button>
+                        </div>
+                        <div class="grid-container md:grid-cols-4" style="margin-bottom: 1.5rem;">
+                            <div><label for="invoiceCustomer" class="form-label">Select Customer</label><select id="invoiceCustomer" required class="form-select"></select></div>
+                            <div><label for="invoiceType" class="form-label">Type</label><select id="invoiceType" required class="form-select"><option value="invoice">GST Invoice</option><option value="estimate">Estimate</option></select></div>
+                            <div><label for="invoiceDate" class="form-label">Date</label><input type="date" id="invoiceDate" required class="form-input"></div>
+                            <div><label for="invoiceNumber" class="form-label">Bill Number</label><input type="text" id="invoiceNumber" required class="form-input"></div>
+                        </div>
+                        
+                        <div class="invoice-item-form">
+                            <h3>Add Item</h3>
+                            <div class="grid-container md:grid-cols-6">
+                                <div class="md:col-span-2">
+                                    <label class="form-label">Product</label>
+                                    <select id="invoiceAddItem" class="form-select"></select>
+                                </div>
+                                <div>
+                                    <label class="form-label">Qty<span id="itemStockDisplay"></span></label>
+                                    <input type="number" id="invoiceAddItemQty" value="1" class="form-input">
+                                </div>
+                                <div><label class="form-label">Free (Pcs)</label><input type="number" id="invoiceAddItemFree" value="0" class="form-input"></div>
+                                <div><label class="form-label">Rate</label><input type="number" id="invoiceAddItemRate" readonly class="form-input form-input-readonly"></div>
+                                <div><label class="form-label">Discount %</label><input type="number" id="invoiceAddItemDisc" value="0" class="form-input"></div>
+                            </div>
+                            <div style="margin-top: 1rem;"><button type="button" id="addItemButton" class="btn btn-primary" style="width: auto;">Add Item</button></div>
+                        </div>
+                        
+                        <div class="table-wrapper" style="margin-bottom: 1.5rem;">
+                            <table class="table">
+                                <thead><tr>
+                                    <th>Product</th>
+                                    <th>HSN</th>
+                                    <th>MRP</th>
+                                    <th>Qty</th>
+                                    <th>Free</th>
+                                    <th>Rate</th>
+                                    <th>Disc%</th>
+                                    <th>Taxable</th>
+                                    <th>CGST</th>
+                                    <th>SGST</th>
+                                    <th>Total</th>
+                                    <th class="text-right">Action</th>
+                                </tr></thead>
+                                <tbody id="invoiceItemsList" style="font-size: 0.875rem;"></tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="invoice-totals">
+                            <div class="invoice-totals-box">
+                                <div><span>Sub-Total (Taxable):</span><span id="invoiceSubtotal">$0.00</span></div>
+                                <div><span>Total GST:</span><span id="invoiceTotalGst">$0.00</span></div>
+                                <hr>
+                                <div class="grand-total"><span>Grand Total:</span><span id="invoiceGrandTotal">$0.00</span></div>
+                            </div>
+                        </div>
+                        <div class="text-right"><button type="submit" class="btn btn-green" style="width: auto; font-size: 1.125rem; padding: 0.5rem 1.5rem;">Save Invoice</button></div>
+                    </form>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <div id="returnModal" class="modal-overlay hidden no-print">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Manage Returns</h3>
+                <button onclick="closeReturnModal()" class="close-btn">&times;</button>
+            </div>
+            <div style="margin-top: 1rem;">
+                <p style="margin-bottom: 0.5rem;">Bill No: <strong id="returnInvoiceNumber"></strong></p>
+                <form id="returnForm">
+                    <input type="hidden" id="returnInvoiceId">
+                    <div class="table-wrapper" style="margin-bottom: 1rem;">
+                        <table class="table">
+                            <thead><tr>
+                                <th>Product</th>
+                                <th>Sold (Qty)</th>
+                                <th>Returned (Qty)</th>
+                                <th>Return Now (Qty)</th>
+                            </tr></thead>
+                            <tbody id="returnItemsList" style="font-size: 0.875rem;"></tbody>
+                        </table>
+                    </div>
+                    <div class="text-right" style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+                        <button type="button" onclick="closeReturnModal()" class="btn btn-secondary w-auto">Cancel</button>
+                        <button type="submit" class="btn btn-red w-auto">Save Return</button>
+                    </div>
                 </form>
             </div>
-
-        </main>
+        </div>
+    </div>
+    
+    <div id="deleteModal" class="modal-overlay hidden no-print">
+        <div class="modal-content modal-content-small">
+            <div class="delete-modal-content">
+                <div class="delete-modal-icon">
+                    <i class="fas fa-trash-alt"></i>
+                </div>
+                <h3 id="deleteModalTitle">Are you sure you want to delete?</h3>
+                <p id="deleteModalMessage">This action cannot be undone. This will permanently delete the item.</p>
+                <div class="delete-modal-buttons">
+                    <button id="deleteConfirmButton" class="btn btn-red"> Yes, Delete </button>
+                    <button id="deleteCancelButton" class="btn btn-secondary"> Cancel </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="toastMessage" class="hidden no-print">
+        <span id="toastText"></span>
     </div>
 
-    <!-- Modals (Return, Delete) -->
-    <div id="returnModal" class="modal-overlay hidden no-print"> <div class="modal-content"> <div class="modal-header"> <h3>सामान वापसी (Return) मैनेज करें</h3> <button onclick="closeReturnModal()" class="close-btn">&times;</button> </div> <div> <p style="margin-bottom: 0.5rem;">बिल नंबर: <strong id="returnInvoiceNumber"></strong></p> <form id="returnForm"> <input type="hidden" id="returnInvoiceId"> <div class="table-wrapper" style="margin-bottom: 1rem;"> <table class="table"> <thead> <tr> <th>प्रोडक्ट</th> <th>बिक्री (Qty)</th> <th>पहले से वापस (Qty)</th> <th>वापसी (Qty)</th> </tr> </thead> <tbody id="returnItemsList"></tbody> </table> </div> <div class="text-right"> <button type="button" onclick="closeReturnModal()" class="btn btn-secondary" style="width: auto; margin-top: 0; margin-right: 0.5rem;">कैंसल</button> <button type="submit" class="btn btn-red" style="width: auto;">रिटर्न सेव करें</button> </div> </form> </div> </div> </div>
-    <div id="deleteModal" class="modal-overlay hidden no-print"> <div class="modal-content modal-content-small"> <div class="delete-modal-content"> <div class="delete-modal-icon"><i class="fas fa-trash-alt"></i></div> <h3 id="deleteModalTitle">क्या आप वाकई हटाना चाहते हैं?</h3> <p id="deleteModalMessage">इस आइटम को हटाने के बाद आप इसे वापस नहीं ला सकते।</p> <div class="delete-modal-buttons"> <button id="deleteConfirmButton" class="btn btn-red"> हाँ, हटाएँ </button> <button id="deleteCancelButton" class="btn btn-secondary" style="margin-top:0;"> कैंसल </button> </div> </div> </div> </div>
-    <div id="toastMessage" class="hidden no-print"> <span id="toastText"></span> </div>
+    <div id="print-area" class="hidden">
+         </div>
 
-    <!-- प्रिंट एरिया (स्टाइल अपडेटेड) -->
-    <div id="print-area">
-         <!-- Print styles moved to main <style> block with @media print -->
-    </div>
-
-    <!-- Firebase SDKs -->
     <script type="module">
         // Firebase Config
         const firebaseConfig = {
@@ -461,7 +1114,7 @@
           measurementId: "G-7KESNDBZ0J"
         };
         
-        // Firebase मॉड्यूल्स इम्पोर्ट
+        // Firebase Imports
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { 
             getAuth, 
@@ -475,26 +1128,26 @@
             onSnapshot, collection, query, Timestamp, setLogLevel, runTransaction
         } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // वेरिएबल्स
+        // Variables
         let app, auth, db;
         let currentUserId = null;
         let listenersAttached = false; 
 
-        // कलेक्शन के नाम
+        // Collection names
         const CUSTOMERS_COLLECTION = 'customers';
         const PRODUCTS_COLLECTION = 'products';
         const INVOICES_COLLECTION = 'invoices';
         
-        // कलेक्शन पाथ हेल्पर
+        // Collection path helper
         function getCollectionPath(collectionName) {
             if (!currentUserId) { console.error("User ID not set!"); return null; }
             return `users/${currentUserId}/${collectionName}`;
         }
         
-        // डिबग लॉगिंग
-        setLogLevel('debug');
+        // Debug logging
+        // setLogLevel('debug'); // Enable for debugging
 
-        // Firebase शुरू करें
+        // Initialize Firebase
         try {
             app = initializeApp(firebaseConfig);
             auth = getAuth(app);
@@ -502,21 +1155,36 @@
             console.log("Firebase Initialized");
         } catch (e) { console.error("Firebase initialization failed:", e); }
 
-        // --- Auth लॉजिक ---
+        // --- Auth Logic ---
         const authScreen = document.getElementById('authScreen');
         const appContainer = document.getElementById('appContainer');
         const loginForm = document.getElementById('loginForm');
         const signupForm = document.getElementById('signupForm');
         const loginError = document.getElementById('loginError');
         const signupError = document.getElementById('signupError');
-        const userEmailDisplay = document.getElementById('userEmailDisplay');
-        const logoutButton = document.getElementById('logoutButton');
+        
+        // All instances of user email/buttons
+        const userEmailDisplays = [
+            document.getElementById('userEmailDisplayDesktop'),
+            document.getElementById('userEmailDisplayMobile')
+        ];
+        const userInitialsDesktop = document.getElementById('userInitialsDesktop');
+        const logoutButtons = [
+            document.getElementById('logoutButtonDesktop'),
+            document.getElementById('logoutButtonMobile')
+        ];
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 console.log("User is signed in:", user.uid, user.email);
                 currentUserId = user.uid;
-                userEmailDisplay.textContent = user.email;
+                
+                // Update user email and initials everywhere
+                userEmailDisplays.forEach(el => { if(el) el.textContent = user.email; });
+                if (user.email && userInitialsDesktop) {
+                    userInitialsDesktop.textContent = user.email.substring(0, 1).toUpperCase();
+                }
+
                 authScreen.classList.add('hidden'); 
                 appContainer.classList.remove('hidden'); 
                 if (!listenersAttached) {
@@ -530,17 +1198,35 @@
                 clearAppData(); 
                 appContainer.classList.add('hidden'); 
                 authScreen.classList.remove('hidden'); 
-                loginError.textContent = ''; 
-                signupError.textContent = '';
+                if(loginError) loginError.textContent = ''; 
+                if(signupError) signupError.textContent = '';
             }
         });
 
-        loginForm.addEventListener('submit', async (e) => { /* ... कोड ... */ e.preventDefault(); const email = document.getElementById('loginEmail').value, password = document.getElementById('loginPassword').value; loginError.textContent = ''; try { await signInWithEmailAndPassword(auth, email, password); } catch (error) { console.error("Login Error:", error.code, error.message); loginError.textContent = getAuthErrorMessage(error); } });
-        signupForm.addEventListener('submit', async (e) => { /* ... कोड ... */ e.preventDefault(); const email = document.getElementById('signupEmail').value, password = document.getElementById('signupPassword').value; signupError.textContent = ''; try { await createUserWithEmailAndPassword(auth, email, password); } catch (error) { console.error("Signup Error:", error.code, error.message); signupError.textContent = getAuthErrorMessage(error); } });
-        logoutButton.addEventListener('click', async () => { /* ... कोड ... */ try { await signOut(auth); } catch (error) { console.error("Logout Error:", error); showToast("लॉगआउट करने में त्रुटि हुई।", true); } });
-        window.toggleAuthForms = () => { /* ... कोड ... */ loginForm.classList.toggle('hidden'); signupForm.classList.toggle('hidden'); loginError.textContent = ''; signupError.textContent = ''; }
-        function getAuthErrorMessage(error) { /* ... कोड ... */ switch (error.code) { case 'auth/invalid-email': return 'ईमेल का फॉर्मेट गलत है।'; case 'auth/user-not-found': return 'इस ईमेल से कोई अकाउंट नहीं मिला।'; case 'auth/wrong-password': return 'गलत पासवर्ड।'; case 'auth/email-already-in-use': return 'यह ईमेल पहले से इस्तेमाल हो रहा है।'; case 'auth/weak-password': return 'पासवर्ड कमजोर है (कम से कम 6 अक्षर)।'; case 'auth/operation-not-allowed': return 'ईमेल/पासवर्ड लॉगिन सक्षम नहीं है।'; default: return `एक एरर आया: ${error.message}`; } }
-        function clearAppData() { /* ... कोड ... */ document.getElementById('customerList').innerHTML = ''; document.getElementById('productList').innerHTML = ''; document.getElementById('invoiceList').innerHTML = ''; document.getElementById('invoiceCustomer').innerHTML = '<option value="">-- ग्राहक चुनें --</option>'; document.getElementById('invoiceAddItem').innerHTML = '<option value="">-- प्रोडक्ट चुनें --</option>'; customerCache = []; productCache = []; invoiceCache = []; currentInvoiceItems = []; resetCustomerForm(); resetProductForm(); resetInvoiceForm(); }
+        if(loginForm) loginForm.addEventListener('submit', async (e) => { e.preventDefault(); const email = document.getElementById('loginEmail').value, password = document.getElementById('loginPassword').value; loginError.textContent = ''; try { await signInWithEmailAndPassword(auth, email, password); } catch (error) { console.error("Login Error:", error.code, error.message); loginError.textContent = getAuthErrorMessage(error); } });
+        if(signupForm) signupForm.addEventListener('submit', async (e) => { e.preventDefault(); const email = document.getElementById('signupEmail').value, password = document.getElementById('signupPassword').value; signupError.textContent = ''; try { await createUserWithEmailAndPassword(auth, email, password); } catch (error) { console.error("Signup Error:", error.code, error.message); signupError.textContent = getAuthErrorMessage(error); } });
+        
+        // Event listeners for all logout buttons
+        logoutButtons.forEach(button => {
+            if(button) button.addEventListener('click', async () => { try { await signOut(auth); } catch (error) { console.error("Logout Error:", error); showToast("Error logging out.", true); } });
+        });
+
+        window.toggleAuthForms = () => { loginForm.classList.toggle('hidden'); signupForm.classList.toggle('hidden'); loginError.textContent = ''; signupError.textContent = ''; }
+        function getAuthErrorMessage(error) { switch (error.code) { case 'auth/invalid-email': return 'Invalid email format.'; case 'auth/user-not-found': return 'No account found with this email.'; case 'auth/wrong-password': return 'Incorrect password.'; case 'auth/email-already-in-use': return 'This email is already in use.'; case 'auth/weak-password': return 'Password is too weak (min. 6 characters).'; default: return `An error occurred.`; } }
+        function clearAppData() { 
+            const customerList = document.getElementById('customerList');
+            if(customerList) customerList.innerHTML = '';
+            const productList = document.getElementById('productList');
+            if(productList) productList.innerHTML = '';
+            const invoiceList = document.getElementById('invoiceList');
+            if(invoiceList) invoiceList.innerHTML = '';
+            const invoiceCustomer = document.getElementById('invoiceCustomer');
+            if(invoiceCustomer) invoiceCustomer.innerHTML = '<option value="">-- Select Customer --</option>';
+            const invoiceAddItem = document.getElementById('invoiceAddItem');
+            if(invoiceAddItem) invoiceAddItem.innerHTML = '<option value="">-- Select Product --</option>';
+            customerCache = []; productCache = []; invoiceCache = []; currentInvoiceItems = []; 
+            resetCustomerForm(); resetProductForm(); resetInvoiceForm(); 
+        }
 
         // --- App Listeners ---
         function initializeAppListenersAndData() {
@@ -549,72 +1235,512 @@
 
             if (!window.appListenersInitialized) { 
                 window.appListenersInitialized = true; 
-                document.querySelectorAll('.tab-btn').forEach(btn => { btn.addEventListener('click', (e) => { document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); e.currentTarget.classList.add('active'); }); });
-                document.getElementById('customerForm').addEventListener('submit', saveCustomer);
-                document.getElementById('productForm').addEventListener('submit', saveProduct);
-                document.getElementById('invoiceForm').addEventListener('submit', saveInvoice);
-                document.getElementById('returnForm').addEventListener('submit', saveReturn);
-                document.getElementById('addItemButton').addEventListener('click', addItemToInvoice);
-                document.getElementById('invoiceAddItem').addEventListener('change', updateItemRate);
-                document.getElementById('deleteCancelButton').addEventListener('click', hideDeleteModal);
+                
+                // For tab buttons
+                document.querySelectorAll('.tab-btn, .mobile-tab-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                        document.querySelectorAll('.mobile-tab-btn').forEach(b => b.classList.remove('active'));
+                        
+                        const viewName = e.currentTarget.getAttribute('onclick').match(/'(.*?_View)'/)[1].replace('_','');
+                        document.querySelectorAll(`.tab-btn[onclick*="${viewName}"], .mobile-tab-btn[onclick*="${viewName}"]`).forEach(activeBtn => {
+                            activeBtn.classList.add('active');
+                        });
+                    });
+                });
+
+                document.getElementById('customerForm')?.addEventListener('submit', saveCustomer);
+                document.getElementById('productForm')?.addEventListener('submit', saveProduct);
+                document.getElementById('invoiceForm')?.addEventListener('submit', saveInvoice);
+                document.getElementById('returnForm')?.addEventListener('submit', saveReturn);
+                document.getElementById('addItemButton')?.addEventListener('click', addItemToInvoice);
+                document.getElementById('invoiceAddItem')?.addEventListener('change', updateItemRate);
+                document.getElementById('deleteCancelButton')?.addEventListener('click', hideDeleteModal);
+                
+                // --- NEW DASHBOARD LISTENER ---
+                document.getElementById('dashboardSearchInput')?.addEventListener('keyup', renderDashboardLists);
             }
              
-            const currentActiveTab = document.querySelector('.tab-btn.active');
-            if (!currentActiveTab && document.querySelector('.tab-btn')) { document.querySelector('.tab-btn').classList.add('active'); }
+            // Activate default tab
+            const defaultTabSelector = `.tab-btn[onclick*="dashboardView"], .mobile-tab-btn[onclick*="dashboardView"]`;
+            document.querySelectorAll(defaultTabSelector).forEach(btn => btn.classList.add('active'));
 
             loadCustomers(); loadProducts(); loadInvoices();
             showView('dashboardView'); 
-            document.getElementById('invoiceDate').value = new Date().toISOString().split('T')[0];
-            document.getElementById('invoiceNumber').value = `INV-${Date.now().toString().slice(-6)}`;
+            const invoiceDateEl = document.getElementById('invoiceDate');
+            if(invoiceDateEl) invoiceDateEl.value = new Date().toISOString().split('T')[0];
+            updateInvoiceNumber();
         }
 
-        // --- बाकी सभी फंक्शन्स (showView, showToast, CRUD, etc.) ---
-        // --- कोई बदलाव नहीं ---
-        window.showView = (viewId) => { /* ... कोड ... */ document.querySelectorAll('.view-content').forEach(view => view.classList.add('hidden')); const viewElement = document.getElementById(viewId); if(viewElement) viewElement.classList.remove('hidden'); else console.error("View not found:", viewId); }
-        window.showCreateInvoiceView = () => { resetInvoiceForm(); showView('createInvoiceView'); }
-        function showToast(message, isError = false) { /* ... कोड ... */ const toast = document.getElementById('toastMessage'), text = document.getElementById('toastText'); if (!toast || !text) return; text.textContent = message; toast.classList.remove('hidden', 'bg-green', 'bg-red'); toast.classList.add(isError ? 'bg-red' : 'bg-green'); toast.style.opacity = 1; setTimeout(() => { toast.style.opacity = 0; setTimeout(() => toast.classList.add('hidden'), 300); }, 3000); }
+        // --- All other functions (showView, showToast, CRUD, etc.) ---
+        window.showView = (viewId) => { 
+            document.querySelectorAll('.view-content').forEach(view => view.classList.add('hidden')); 
+            const viewElement = document.getElementById(viewId); 
+            if(viewElement) viewElement.classList.remove('hidden'); 
+            else console.error("View not found:", viewId); 
+        }
+        window.showCreateInvoiceView = () => { 
+            resetInvoiceForm(); 
+            showView('createInvoiceView'); 
+        }
+        function showToast(message, isError = false) { 
+            const toast = document.getElementById('toastMessage'), text = document.getElementById('toastText'); 
+            if (!toast || !text) return; 
+            text.textContent = message; 
+            toast.classList.remove('hidden', 'bg-green', 'bg-red'); 
+            toast.classList.add(isError ? 'bg-red' : 'bg-green'); 
+            toast.style.opacity = 1; 
+            setTimeout(() => { 
+                toast.style.opacity = 0; 
+                setTimeout(() => toast.classList.add('hidden'), 300); 
+            }, 3000); 
+        }
+        
         let deleteCallback = null; 
-        function showDeleteModal(title, message, callback) { /* ... कोड ... */ document.getElementById('deleteModalTitle').textContent = title; document.getElementById('deleteModalMessage').textContent = message; deleteCallback = callback; const confirmBtn = document.getElementById('deleteConfirmButton'); const newConfirmBtn = confirmBtn.cloneNode(true); confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn); newConfirmBtn.addEventListener('click', () => { if (deleteCallback) deleteCallback(); hideDeleteModal(); }); document.getElementById('deleteModal').classList.remove('hidden'); }
-        function hideDeleteModal() { /* ... कोड ... */ document.getElementById('deleteModal').classList.add('hidden'); deleteCallback = null; }
+        function showDeleteModal(title, message, callback) { 
+            document.getElementById('deleteModalTitle').textContent = title; 
+            document.getElementById('deleteModalMessage').textContent = message; 
+            deleteCallback = callback; 
+            const confirmBtn = document.getElementById('deleteConfirmButton'); 
+            const newConfirmBtn = confirmBtn.cloneNode(true); 
+            confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn); 
+            newConfirmBtn.addEventListener('click', () => { if (deleteCallback) deleteCallback(); hideDeleteModal(); }); 
+            document.getElementById('deleteModal').classList.remove('hidden'); 
+        }
+        function hideDeleteModal() { 
+            document.getElementById('deleteModal').classList.add('hidden'); 
+            deleteCallback = null; 
+        }
         
         let customerCache = [];
-        async function saveCustomer(e) { /* ... कोड ... */ e.preventDefault(); const name = document.getElementById('customerName').value, gstin = document.getElementById('customerGstin').value, address = document.getElementById('customerAddress').value, id = document.getElementById('customerId').value; const customerData = { name, gstin, address }; try { const collectionPath = getCollectionPath(CUSTOMERS_COLLECTION); if (!collectionPath) throw new Error("Path error"); if (id) await setDoc(doc(db, collectionPath, id), customerData, { merge: true }); else await addDoc(collection(db, collectionPath), customerData); showToast(id ? "ग्राहक अपडेट हो गया।" : "नया ग्राहक जुड़ गया।"); resetCustomerForm(); } catch (error) { console.error("Error saving customer: ", error); showToast("ग्राहक को सेव करने में त्रुटि हुई।", true); } }
-        function loadCustomers() { /* ... कोड ... */ const collectionPath = getCollectionPath(CUSTOMERS_COLLECTION); if (!collectionPath) return; console.log("Loading customers from:", collectionPath); const q = query(collection(db, collectionPath)); onSnapshot(q, (querySnapshot) => { const list = document.getElementById('customerList'), select = document.getElementById('invoiceCustomer'); if (!list || !select) return; list.innerHTML = ''; select.innerHTML = '<option value="">-- ग्राहक चुनें --</option>'; customerCache = []; querySnapshot.forEach((doc) => { const customer = { id: doc.id, ...doc.data() }; customerCache.push(customer); const tr = document.createElement('tr'); tr.innerHTML = `<td>${customer.name}</td><td>${customer.gstin || '-'}</td><td><button onclick="editCustomer('${customer.id}')" class="btn-icon btn-icon-blue" title="एडिट"><i class="fas fa-edit"></i></button> <button onclick="deleteCustomer('${customer.id}', '${customer.name}')" class="btn-icon btn-icon-red" title="हटाएँ"><i class="fas fa-trash"></i></button></td>`; list.appendChild(tr); const option = document.createElement('option'); option.value = customer.id; option.textContent = `${customer.name} ${customer.gstin ? '('+customer.gstin+')' : ''}`; select.appendChild(option); }); console.log("Customers loaded:", customerCache.length); if (querySnapshot.empty) console.log("No customers found."); }, (error) => { console.error("Error loading customers: ", error); showToast("ग्राहक लोड करने में त्रुटि हुई।", true); }); }
-        window.editCustomer = (id) => { /* ... कोड ... */ const customer = customerCache.find(c => c.id === id); if (customer) { document.getElementById('customerName').value = customer.name; document.getElementById('customerGstin').value = customer.gstin || ''; document.getElementById('customerAddress').value = customer.address || ''; document.getElementById('customerId').value = customer.id; } }
-        window.deleteCustomer = async (id, name) => { /* ... कोड ... */ showDeleteModal(`ग्राहक '${name}' को हटाएँ?`, "इस ग्राहक को हटाने के बाद आप इसे वापस नहीं ला सकते।", async () => { try { await deleteDoc(doc(db, getCollectionPath(CUSTOMERS_COLLECTION), id)); showToast("ग्राहक हटा दिया गया।"); } catch (error) { console.error("Error deleting customer: ", error); showToast("ग्राहक को हटाने में त्रुटि हुई।", true); } }); }
-        window.resetCustomerForm = () => { /* ... कोड ... */ document.getElementById('customerForm').reset(); document.getElementById('customerId').value = ''; }
+        async function saveCustomer(e) { 
+            e.preventDefault(); 
+            const name = document.getElementById('customerName').value, 
+                  gstin = document.getElementById('customerGstin').value, 
+                  address = document.getElementById('customerAddress').value, 
+                  id = document.getElementById('customerId').value;
+            const customerData = { name, gstin, address }; 
+            try { 
+                const collectionPath = getCollectionPath(CUSTOMERS_COLLECTION); 
+                if (!collectionPath) throw new Error("Path error"); 
+                if (id) await setDoc(doc(db, collectionPath, id), customerData, { merge: true }); 
+                else await addDoc(collection(db, collectionPath), customerData); 
+                showToast(id ? "Customer updated." : "New customer added."); 
+                resetCustomerForm(); 
+            } catch (error) { console.error("Error saving customer: ", error); showToast("Error saving customer.", true); } 
+        }
+        function loadCustomers() { 
+            const collectionPath = getCollectionPath(CUSTOMERS_COLLECTION); 
+            if (!collectionPath) return; 
+            console.log("Loading customers from:", collectionPath); 
+            const q = query(collection(db, collectionPath)); 
+            onSnapshot(q, (querySnapshot) => { 
+                const list = document.getElementById('customerList'), select = document.getElementById('invoiceCustomer'); 
+                if (!list || !select) return; 
+                list.innerHTML = ''; 
+                select.innerHTML = '<option value="">-- Select Customer --</option>'; 
+                customerCache = []; 
+                querySnapshot.forEach((doc) => { 
+                    const customer = { id: doc.id, ...doc.data() }; 
+                    customerCache.push(customer); 
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td class="px-4 py-3 whitespace-nowrap"><div class="text-sm font-medium text-gray-900">${customer.name}</div></td>
+                        <td class="px-4 py-3 whitespace-nowrap"><div class="text-sm text-gray-600">${customer.gstin || '-'}</div></td>
+                        <td class="px-4 py-3 whitespace-nowrap text-right text-sm font-medium table-action-buttons">
+                            <button onclick="editCustomer('${customer.id}')" class="icon-blue" title="Edit"><i class="fas fa-edit"></i></button> 
+                            <button onclick="deleteCustomer('${customer.id}', '${customer.name}')" class="icon-red" title="Delete"><i class="fas fa-trash"></i></button>
+                        </td>`; 
+                    list.appendChild(tr); 
+                    const option = document.createElement('option'); 
+                    option.value = customer.id; 
+                    option.textContent = `${customer.name} ${customer.gstin ? '('+customer.gstin+')' : ''}`; 
+                    select.appendChild(option); 
+                }); 
+                console.log("Customers loaded:", customerCache.length); 
+            }, (error) => { console.error("Error loading customers: ", error); showToast("Error loading customers.", true); }); 
+        }
+        window.editCustomer = (id) => { 
+            const customer = customerCache.find(c => c.id === id); 
+            if (customer) { 
+                document.getElementById('customerName').value = customer.name; 
+                document.getElementById('customerGstin').value = customer.gstin || ''; 
+                document.getElementById('customerAddress').value = customer.address || ''; 
+                document.getElementById('customerId').value = customer.id; 
+            } 
+        }
+        window.deleteCustomer = async (id, name) => { 
+            showDeleteModal(`Delete customer '${name}'?`, "This action cannot be undone.", async () => { 
+                try { 
+                    await deleteDoc(doc(db, getCollectionPath(CUSTOMERS_COLLECTION), id)); 
+                    showToast("Customer deleted."); 
+                } catch (error) { console.error("Error deleting customer: ", error); showToast("Error deleting customer.", true); } 
+            }); 
+        }
+        window.resetCustomerForm = () => { 
+            const form = document.getElementById('customerForm');
+            if(form) form.reset(); 
+            const idEl = document.getElementById('customerId');
+            if(idEl) idEl.value = ''; 
+        }
         
         let productCache = [];
-        async function saveProduct(e) { /* ... कोड ... */ e.preventDefault(); const name = document.getElementById('productName').value, hsn = document.getElementById('productHsn').value, mrp = parseFloat(document.getElementById('productMrp').value) || 0, rate = parseFloat(document.getElementById('productRate').value), gstPercent = parseFloat(document.getElementById('productGst').value), currentStock = parseInt(document.getElementById('productStock').value) || 0, id = document.getElementById('productId').value; if (isNaN(rate) || isNaN(gstPercent)) { showToast("कृपया रेट और GST में सही नंबर डालें।", true); return; } const productData = { name, hsn: hsn || '', mrp, rate, gstPercent, currentStock }; try { const collectionPath = getCollectionPath(PRODUCTS_COLLECTION); if (!collectionPath) throw new Error("Path error"); if (id) { const {currentStock, ...detailsToUpdate} = productData; await setDoc(doc(db, collectionPath, id), detailsToUpdate, { merge: true }); showToast("प्रोडक्ट अपडेट हो गया। (स्टॉक नहीं बदला)"); } else { await addDoc(collection(db, collectionPath), productData); showToast("नया प्रोडक्ट जुड़ गया।"); } resetProductForm(); } catch (error) { console.error("Error saving product: ", error); showToast("प्रोडक्ट को सेव करने में त्रुटि हुई।", true); } }
-        function loadProducts() { /* ... कोड ... */ const collectionPath = getCollectionPath(PRODUCTS_COLLECTION); if (!collectionPath) return; console.log("Loading products from:", collectionPath); const q = query(collection(db, collectionPath)); onSnapshot(q, (querySnapshot) => { const list = document.getElementById('productList'), select = document.getElementById('invoiceAddItem'); if(!list || !select) return; list.innerHTML = ''; select.innerHTML = '<option value="">-- प्रोडक्ट चुनें --</option>'; productCache = []; querySnapshot.forEach((doc) => { const product = { id: doc.id, ...doc.data() }; productCache.push(product); const tr = document.createElement('tr'); tr.innerHTML = `<td>${product.name}</td><td>${product.hsn || '-'}</td><td>₹${(product.mrp || 0).toFixed(2)}</td><td>₹${product.rate.toFixed(2)}</td><td>${product.gstPercent}%</td><td>${product.currentStock || 0}</td><td><button onclick="editProduct('${product.id}')" class="btn-icon btn-icon-blue" title="एडिट"><i class="fas fa-edit"></i></button> <button onclick="deleteProduct('${product.id}', '${product.name}')" class="btn-icon btn-icon-red" title="हटाएँ"><i class="fas fa-trash"></i></button></td>`; list.appendChild(tr); const option = document.createElement('option'); option.value = product.id; option.textContent = `${product.name} (@ ₹${product.rate.toFixed(2)})`; select.appendChild(option); }); console.log("Products loaded:", productCache.length); if (querySnapshot.empty) console.log("No products found."); }, (error) => { console.error("Error loading products: ", error); showToast("प्रोडक्ट लोड करने में त्रुटि हुई।", true); }); }
-        window.editProduct = (id) => { /* ... कोड ... */ const product = productCache.find(p => p.id === id); if (product) { document.getElementById('productName').value = product.name; document.getElementById('productHsn').value = product.hsn || ''; document.getElementById('productMrp').value = product.mrp || 0; document.getElementById('productRate').value = product.rate; document.getElementById('productGst').value = product.gstPercent; document.getElementById('productStock').value = product.currentStock || 0; document.getElementById('productId').value = product.id; } }
-        window.deleteProduct = async (id, name) => { /* ... कोड ... */ showDeleteModal(`प्रोडक्ट '${name}' को हटाएँ?`, "इस प्रोडक्ट को हटाने के बाद आप इसे वापस नहीं ला सकते।", async () => { try { await deleteDoc(doc(db, getCollectionPath(PRODUCTS_COLLECTION), id)); showToast("प्रोडक्ट हटा दिया गया।"); } catch (error) { console.error("Error deleting product: ", error); showToast("प्रोडक्ट को हटाने में त्रुटि हुई।", true); } }); }
-        window.resetProductForm = () => { /* ... कोड ... */ document.getElementById('productForm').reset(); document.getElementById('productId').value = ''; }
+        async function saveProduct(e) { 
+            e.preventDefault(); 
+            const name = document.getElementById('productName').value, 
+                  hsn = document.getElementById('productHsn').value, 
+                  mrp = parseFloat(document.getElementById('productMrp').value) || 0, 
+                  rate = parseFloat(document.getElementById('productRate').value), 
+                  gstPercent = parseFloat(document.getElementById('productGst').value), 
+                  currentStock = parseInt(document.getElementById('productStock').value) || 0, 
+                  id = document.getElementById('productId').value; 
+            if (isNaN(rate) || isNaN(gstPercent)) { showToast("Please enter valid numbers for Rate and GST.", true); return; } 
+            
+            const productData = { name, hsn: hsn || '', mrp, rate, gstPercent, currentStock }; 
+            
+            try { 
+                const collectionPath = getCollectionPath(PRODUCTS_COLLECTION); 
+                if (!collectionPath) throw new Error("Path error"); 
+                
+                if (id) { 
+                    await setDoc(doc(db, collectionPath, id), productData, { merge: true }); 
+                    showToast("Product updated (Stock has been updated)."); 
+                } else { 
+                    await addDoc(collection(db, collectionPath), productData); 
+                    showToast("New product added."); 
+                } 
+                resetProductForm(); 
+            } catch (error) { console.error("Error saving product: ", error); showToast("Error saving product.", true); } 
+        }
+        function loadProducts() { 
+            const collectionPath = getCollectionPath(PRODUCTS_COLLECTION); 
+            if (!collectionPath) return; 
+            console.log("Loading products from:", collectionPath); 
+            const q = query(collection(db, collectionPath)); 
+            onSnapshot(q, (querySnapshot) => { 
+                const list = document.getElementById('productList'), select = document.getElementById('invoiceAddItem'); 
+                if(!list || !select) return; 
+                list.innerHTML = ''; 
+                select.innerHTML = '<option value="">-- Select Product --</option>'; 
+                productCache = []; 
+                querySnapshot.forEach((doc) => { 
+                    const product = { id: doc.id, ...doc.data() }; 
+                    productCache.push(product); 
+                    const tr = document.createElement('tr'); 
+                    tr.innerHTML = `
+                        <td class="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">${product.name}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-600">${product.hsn || '-'}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-600">$${(product.mrp || 0).toFixed(2)}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-600">$${product.rate.toFixed(2)}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-600">${product.gstPercent}%</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm font-medium ${product.currentStock <= 0 ? 'text-red-600' : 'text-gray-800'}">${product.currentStock || 0}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-right text-sm font-medium table-action-buttons">
+                            <button onclick="editProduct('${product.id}')" class="icon-blue" title="Edit"><i class="fas fa-edit"></i></button> 
+                            <button onclick="deleteProduct('${product.id}', '${product.name}')" class="icon-red" title="Delete"><i class="fas fa-trash"></i></button>
+                        </td>`; 
+                    list.appendChild(tr); 
+                    const option = document.createElement('option'); 
+                    option.value = product.id; 
+                    option.textContent = `${product.name} (@ $${product.rate.toFixed(2)})`; 
+                    select.appendChild(option); 
+                }); 
+                console.log("Products loaded:", productCache.length); 
+            }, (error) => { console.error("Error loading products: ", error); showToast("Error loading products.", true); }); 
+        }
+        window.editProduct = (id) => { 
+            const product = productCache.find(p => p.id === id); 
+            if (product) { 
+                document.getElementById('productName').value = product.name; 
+                document.getElementById('productHsn').value = product.hsn || ''; 
+                document.getElementById('productMrp').value = product.mrp || 0; 
+                document.getElementById('productRate').value = product.rate; 
+                document.getElementById('productGst').value = product.gstPercent; 
+                document.getElementById('productStock').value = product.currentStock || 0; // Load stock into form
+                document.getElementById('productId').value = product.id; 
+            } 
+        }
+        window.deleteProduct = async (id, name) => { 
+            showDeleteModal(`Delete product '${name}'?`, "This action cannot be undone.", async () => { 
+                try { 
+                    await deleteDoc(doc(db, getCollectionPath(PRODUCTS_COLLECTION), id)); 
+                    showToast("Product deleted."); 
+                } catch (error) { console.error("Error deleting product: ", error); showToast("Error deleting product.", true); } 
+            }); 
+        }
+        window.resetProductForm = () => { 
+            const form = document.getElementById('productForm');
+            if(form) form.reset(); 
+            const idEl = document.getElementById('productId');
+            if(idEl) idEl.value = ''; 
+        }
         
         let currentInvoiceItems = [];
         let invoiceCache = [];
-        window.updateItemRate = () => { /* ... कोड ... */ const productId = document.getElementById('invoiceAddItem').value; const stockDisplay = document.getElementById('itemStockDisplay'); if (productId) { const product = productCache.find(p => p.id === productId); if (product) { document.getElementById('invoiceAddItemRate').value = product.rate.toFixed(2); stockDisplay.textContent = `(स्टॉक में: ${product.currentStock || 0})`; } } else { document.getElementById('invoiceAddItemRate').value = ''; stockDisplay.textContent = ''; } }
-        function addItemToInvoice() { /* ... कोड ... */ const productId = document.getElementById('invoiceAddItem').value, qty = parseFloat(document.getElementById('invoiceAddItemQty').value), freePcs = parseFloat(document.getElementById('invoiceAddItemFree').value) || 0, discountPercent = parseFloat(document.getElementById('invoiceAddItemDisc').value) || 0; if (!productId || !qty || qty <= 0) { showToast("कृपया प्रोडक्ट चुनें और सही मात्रा डालें।", true); return; } const product = productCache.find(p => p.id === productId); if (!product) { showToast("प्रोडक्ट नहीं मिला।", true); return; } if (qty > (product.currentStock || 0)) { showToast(`स्टॉक कम है! आपके पास सिर्फ ${product.currentStock || 0} पीस हैं।`, true); return; } currentInvoiceItems.push({ productId: product.id, name: product.name, hsn: product.hsn || '', mrp: product.mrp || 0, rate: product.rate, gstPercent: product.gstPercent, qty: qty, freePcs: freePcs, discountPercent: discountPercent }); document.getElementById('invoiceAddItem').value = ''; document.getElementById('invoiceAddItemQty').value = '1'; document.getElementById('invoiceAddItemFree').value = '0'; document.getElementById('invoiceAddItemDisc').value = '0'; document.getElementById('invoiceAddItemRate').value = ''; document.getElementById('itemStockDisplay').textContent = ''; updateInvoiceItemsTable(); updateInvoiceTotals(); }
-        function updateInvoiceItemsTable() { /* ... कोड ... */ const tbody = document.getElementById('invoiceItemsList'); tbody.innerHTML = ''; currentInvoiceItems.forEach((item, index) => { const baseValue = item.rate * item.qty, discountAmount = baseValue * (item.discountPercent / 100), taxableValue = baseValue - discountAmount, cgstAmount = (taxableValue * (item.gstPercent / 100)) / 2, sgstAmount = (taxableValue * (item.gstPercent / 100)) / 2, total = taxableValue + cgstAmount + sgstAmount; const tr = document.createElement('tr'); tr.innerHTML = `<td>${item.name}</td><td>${item.hsn}</td><td>₹${(item.mrp || 0).toFixed(2)}</td><td>${item.qty}</td><td>${item.freePcs}</td><td>₹${item.rate.toFixed(2)}</td><td>${item.discountPercent}%</td><td>₹${taxableValue.toFixed(2)}</td><td>₹${cgstAmount.toFixed(2)}</td><td>₹${sgstAmount.toFixed(2)}</td><td class="font-semibold">₹${total.toFixed(2)}</td><td><button type="button" onclick="removeInvoiceItem(${index})" class="btn-icon btn-icon-red" title="हटाएँ"><i class="fas fa-trash"></i></button></td>`; tbody.appendChild(tr); }); }
-        window.removeInvoiceItem = (index) => { /* ... कोड ... */ currentInvoiceItems.splice(index, 1); updateInvoiceItemsTable(); updateInvoiceTotals(); }
-        function updateInvoiceTotals() { /* ... कोड ... */ let subtotal = 0, totalGst = 0; currentInvoiceItems.forEach(item => { const baseValue = item.rate * item.qty, discountAmount = baseValue * (item.discountPercent / 100), taxableValue = baseValue - discountAmount, cgstAmount = (taxableValue * (item.gstPercent / 100)) / 2, sgstAmount = (taxableValue * (item.gstPercent / 100)) / 2; subtotal += taxableValue; totalGst += (cgstAmount + sgstAmount); }); const grandTotal = subtotal + totalGst; document.getElementById('invoiceSubtotal').textContent = `₹${subtotal.toFixed(2)}`; document.getElementById('invoiceTotalGst').textContent = `₹${totalGst.toFixed(2)}`; document.getElementById('invoiceGrandTotal').textContent = `₹${grandTotal.toFixed(2)}`; }
-        async function saveInvoice(e) { /* ... कोड ... */ e.preventDefault(); const customerId = document.getElementById('invoiceCustomer').value, invoiceType = document.getElementById('invoiceType').value, invoiceDate = document.getElementById('invoiceDate').value, invoiceNumber = document.getElementById('invoiceNumber').value; if (!customerId || !invoiceDate || !invoiceNumber || currentInvoiceItems.length === 0) { showToast("कृपया सभी फ़ील्ड भरें और कम से कम एक आइटम जोड़ें।", true); return; } const customer = customerCache.find(c => c.id === customerId); if (!customer) { showToast("ग्राहक नहीं मिला। कृपया दोबारा चुनें।", true); return; } let subtotal = 0, totalGst = 0; const items = currentInvoiceItems.map(item => { const baseValue = item.rate * item.qty, discountAmount = baseValue * (item.discountPercent / 100), taxableValue = baseValue - discountAmount, cgstAmount = (taxableValue * (item.gstPercent / 100)) / 2, sgstAmount = (taxableValue * (item.gstPercent / 100)) / 2, total = taxableValue + cgstAmount + sgstAmount; subtotal += taxableValue; totalGst += (cgstAmount + sgstAmount); return { ...item, mrp: item.mrp || 0, freePcs: item.freePcs || 0, discountPercent: item.discountPercent || 0, taxableValue, cgstAmount, sgstAmount, total }; }); const grandTotal = subtotal + totalGst; const invoiceData = { customerId: customerId, customerName: customer.name, customerGstin: customer.gstin || '', customerAddress: customer.address || '', invoiceType, invoiceNumber, invoiceDate: Timestamp.fromDate(new Date(invoiceDate)), items, subtotal, totalGst, grandTotal, returns: [], createdAt: Timestamp.now() }; try { await runTransaction(db, async (transaction) => { const collectionPath = getCollectionPath(INVOICES_COLLECTION); if (!collectionPath) throw new Error("Path error"); const productUpdates = []; for (const item of items) { const productRef = doc(db, getCollectionPath(PRODUCTS_COLLECTION), item.productId); const productDoc = await transaction.get(productRef); if (!productDoc.exists()) throw new Error(`प्रोडक्ट ${item.name} नहीं मिला!`); const currentStock = productDoc.data().currentStock || 0; if (item.qty > currentStock) throw new Error(`स्टॉक कम है! ${item.name} के ${currentStock} पीस ही बाकी हैं।`); const newStock = currentStock - item.qty; productUpdates.push({ ref: productRef, newStock: newStock }); } const newInvoiceRef = doc(collection(db, collectionPath)); transaction.set(newInvoiceRef, invoiceData); for (const update of productUpdates) transaction.update(update.ref, { currentStock: update.newStock }); }); showToast("बिल सफलतापूर्वक सेव हो गया और स्टॉक अपडेट हो गया है।"); resetInvoiceForm(); showView('invoicesView'); } catch (error) { console.error("Error saving invoice transaction: ", error); if (error.message.startsWith("स्टॉक कम है!") || error.message.startsWith("प्रोडक्ट")) showToast(error.message, true); else showToast("बिल सेव करने में त्रुटि हुई।", true); } }
-        function resetInvoiceForm() { /* ... कोड ... */ document.getElementById('invoiceForm').reset(); document.getElementById('invoiceDate').value = new Date().toISOString().split('T')[0]; currentInvoiceItems = []; updateInvoiceItemsTable(); updateInvoiceTotals(); document.getElementById('invoiceNumber').value = `INV-${Date.now().toString().slice(-6)}`; document.getElementById('itemStockDisplay').textContent = ''; }
         
-        function loadInvoices() { /* ... कोड ... */ const collectionPath = getCollectionPath(INVOICES_COLLECTION); if (!collectionPath) return; console.log("Loading invoices from:", collectionPath); const q = query(collection(db, collectionPath)); onSnapshot(q, (querySnapshot) => { const tbody = document.getElementById('invoiceList'); tbody.innerHTML = ''; invoiceCache = []; querySnapshot.forEach((doc) => { const invoice = { id: doc.id, ...doc.data() }; invoiceCache.push(invoice); let totalReturnedAmount = 0; if (invoice.returns && invoice.returns.length > 0) invoice.returns.forEach(ret => (ret.items || []).forEach(item => { const originalItem = (invoice.items || []).find(i => i.productId === item.productId); if(originalItem) { const rate = originalItem.rate, gstPercent = originalItem.gstPercent, taxableValue = rate * item.returnQty, gstAmount = taxableValue * (gstPercent / 100); totalReturnedAmount += taxableValue + gstAmount; } })); const netAmount = invoice.grandTotal - totalReturnedAmount; let status = ""; if(totalReturnedAmount > 0 && netAmount > 0.01) status = `<span class="text-yellow-600 font-semibold">पार्शियल रिटर्न</span>`; else if (netAmount <= 0.01) status = `<span class="text-red-600 font-semibold">फुल रिटर्न</span>`; else status = `<span class="text-green-600 font-semibold">फाइनल</span>`; let convertButton = ''; if (invoice.invoiceType === 'estimate') convertButton = `<button onclick="convertToInvoice('${invoice.id}')" class="btn-icon btn-icon-green" title="GST बिल में बदलें"><i class="fas fa-file-invoice-dollar"></i></button>`; const tr = document.createElement('tr'); tr.setAttribute('data-search', `${invoice.invoiceNumber.toLowerCase()} ${invoice.customerName.toLowerCase()}`); tr.innerHTML = `<td>${invoice.invoiceNumber}</td><td>${invoice.invoiceType === 'invoice' ? 'GST बिल' : 'एस्टीमेट'}</td><td>${invoice.customerName}</td><td>${new Date(invoice.invoiceDate.seconds * 1000).toLocaleDateString('hi-IN')}</td><td><div>₹${invoice.grandTotal.toFixed(2)}</div>${totalReturnedAmount > 0 ? `<div class="text-xs text-red-500">(वापसी: ₹${totalReturnedAmount.toFixed(2)})</div>` : ''}</td><td>${status}</td><td><button onclick="handlePrintInvoice('${invoice.id}')" class="btn-icon btn-icon-blue" title="प्रिंट"><i class="fas fa-print"></i></button>${convertButton}<button onclick="openReturnModal('${invoice.id}')" class="btn-icon btn-icon-orange" title="सामान वापसी"><i class="fas fa-undo"></i></button><button onclick="deleteInvoice('${invoice.id}', '${invoice.invoiceNumber}')" class="btn-icon btn-icon-red" title="बिल हटाएँ"><i class="fas fa-trash"></i></button></td>`; tbody.appendChild(tr); }); console.log("Invoices loaded:", invoiceCache.length); if (querySnapshot.empty) console.log("No invoices found."); }, (error) => { console.error("Error loading invoices: ", error); showToast("बिल लोड करने में त्रुटि हुई।", true); }); }
-        window.convertToInvoice = async (id) => { /* ... कोड ... */ if (!id) return; const invoiceRef = doc(db, getCollectionPath(INVOICES_COLLECTION), id); try { await updateDoc(invoiceRef, { invoiceType: "invoice" }); showToast("एस्टीमेट को GST बिल में बदल दिया गया है।"); } catch (error) { console.error("Error converting invoice: ", error); showToast("बिल बदलने में त्रुटि हुई।", true); } }
-        window.filterInvoices = () => { /* ... कोड ... */ const filter = document.getElementById('searchInvoices').value.toLowerCase(); const rows = document.querySelectorAll('#invoiceList tr'); rows.forEach(row => { const searchData = row.getAttribute('data-search'); if (searchData.includes(filter)) row.style.display = ''; else row.style.display = 'none'; }); }
-        window.deleteInvoice = (id, number) => { /* ... कोड ... */ showDeleteModal(`बिल #${number} को हटाएँ?`, "इस बिल को हटाने के बाद आप इसे वापस नहीं ला सकते। यह एक पक्का (permanent) एक्शन है।", async () => { try { await deleteDoc(doc(db, getCollectionPath(INVOICES_COLLECTION), id)); showToast("बिल हटा दिया गया। (स्टॉक वापस नहीं आया)"); } catch (error) { console.error("Error deleting invoice: ", error); showToast("बिल को हटाने में त्रुटि हुई।", true); } }); }
+        function updateInvoiceNumber() {
+            const el = document.getElementById('invoiceNumber');
+            if(el) el.value = `INV-${Date.now().toString().slice(-6)}`;
+        }
+
+        window.updateItemRate = () => { 
+            const productId = document.getElementById('invoiceAddItem').value; 
+            const stockDisplay = document.getElementById('itemStockDisplay'); 
+            const rateEl = document.getElementById('invoiceAddItemRate');
+            if (productId) { 
+                const product = productCache.find(p => p.id === productId); 
+                if (product) { 
+                    if(rateEl) rateEl.value = product.rate.toFixed(2); 
+                    if(stockDisplay) {
+                        stockDisplay.textContent = `(Stock: ${product.currentStock || 0})`; 
+                        stockDisplay.className = `ml-2 text-xs font-medium ${product.currentStock <= 0 ? 'stock-low' : 'stock-ok'}`;
+                    }
+                } 
+            } else { 
+                if(rateEl) rateEl.value = ''; 
+                if(stockDisplay) stockDisplay.textContent = ''; 
+            } 
+        }
+        function addItemToInvoice() { 
+            const productId = document.getElementById('invoiceAddItem').value, 
+                  qty = parseFloat(document.getElementById('invoiceAddItemQty').value), 
+                  freePcs = parseFloat(document.getElementById('invoiceAddItemFree').value) || 0, 
+                  discountPercent = parseFloat(document.getElementById('invoiceAddItemDisc').value) || 0; 
+            if (!productId || !qty || qty <= 0) { showToast("Please select a product and enter a valid quantity.", true); return; } 
+            const product = productCache.find(p => p.id === productId); 
+            if (!product) { showToast("Product not found.", true); return; } 
+            
+            const qtyAlreadyInBill = currentInvoiceItems
+                .filter(item => item.productId === productId)
+                .reduce((sum, item) => sum + item.qty, 0);
+            const totalQtyNeeded = qtyAlreadyInBill + qty;
+            
+            if (totalQtyNeeded > (product.currentStock || 0)) { 
+                showToast(`Low stock! You only have ${product.currentStock || 0} pcs. (${qtyAlreadyInBill} already in bill)`, true); 
+                return; 
+            } 
+            
+            currentInvoiceItems.push({ productId: product.id, name: product.name, hsn: product.hsn || '', mrp: product.mrp || 0, rate: product.rate, gstPercent: product.gstPercent, qty: qty, freePcs: freePcs, discountPercent: discountPercent }); 
+            
+            document.getElementById('invoiceAddItem').value = ''; 
+            document.getElementById('invoiceAddItemQty').value = '1'; 
+            document.getElementById('invoiceAddItemFree').value = '0'; 
+            document.getElementById('invoiceAddItemDisc').value = '0'; 
+            document.getElementById('invoiceAddItemRate').value = ''; 
+            document.getElementById('itemStockDisplay').textContent = ''; 
+            updateInvoiceItemsTable(); 
+            updateInvoiceTotals(); 
+        }
+        function updateInvoiceItemsTable() { 
+            const tbody = document.getElementById('invoiceItemsList'); 
+            if(!tbody) return;
+            tbody.innerHTML = ''; 
+            currentInvoiceItems.forEach((item, index) => { 
+                const baseValue = item.rate * item.qty, 
+                      discountAmount = baseValue * (item.discountPercent / 100), 
+                      taxableValue = baseValue - discountAmount, 
+                      cgstAmount = (taxableValue * (item.gstPercent / 100)) / 2, 
+                      sgstAmount = (taxableValue * (item.gstPercent / 100)) / 2, 
+                      total = taxableValue + cgstAmount + sgstAmount; 
+                const tr = document.createElement('tr'); 
+                tr.innerHTML = `
+                    <td class="px-3 py-2 whitespace-nowrap">${item.name}</td>
+                    <td class="px-3 py-2 whitespace-nowrap">${item.hsn}</td>
+                    <td class="px-3 py-2 whitespace-nowrap">$${(item.mrp || 0).toFixed(2)}</td>
+                    <td class="px-3 py-2 whitespace-nowrap">${item.qty}</td>
+                    <td class="px-3 py-2 whitespace-nowrap">${item.freePcs}</td>
+                    <td class="px-3 py-2 whitespace-nowrap">$${item.rate.toFixed(2)}</td>
+                    <td class="px-3 py-2 whitespace-nowrap">${item.discountPercent}%</td>
+                    <td class="px-3 py-2 whitespace-nowrap">$${taxableValue.toFixed(2)}</td>
+                    <td class="px-3 py-2 whitespace-nowrap">$${cgstAmount.toFixed(2)}</td>
+                    <td class="px-3 py-2 whitespace-nowrap">$${sgstAmount.toFixed(2)}</td>
+                    <td class="px-3 py-2 whitespace-nowrap font-semibold">$${total.toFixed(2)}</td>
+                    <td class="px-3 py-2 whitespace-nowrap text-right">
+                        <button type="button" onclick="removeInvoiceItem(${index})" class="table-action-icon icon-red" title="Remove"><i class="fas fa-trash"></i></button>
+                    </td>`; 
+                tbody.appendChild(tr); 
+            }); 
+        }
+        window.removeInvoiceItem = (index) => { 
+            currentInvoiceItems.splice(index, 1); 
+            updateInvoiceItemsTable(); 
+            updateInvoiceTotals(); 
+        }
+        function updateInvoiceTotals() { 
+            let subtotal = 0, totalGst = 0; 
+            currentInvoiceItems.forEach(item => { 
+                const baseValue = item.rate * item.qty, 
+                      discountAmount = baseValue * (item.discountPercent / 100), 
+                      taxableValue = baseValue - discountAmount, 
+                      cgstAmount = (taxableValue * (item.gstPercent / 100)) / 2, 
+                      sgstAmount = (taxableValue * (item.gstPercent / 100)) / 2; 
+                subtotal += taxableValue; 
+                totalGst += (cgstAmount + sgstAmount); 
+            }); 
+            const grandTotal = subtotal + totalGst; 
+            document.getElementById('invoiceSubtotal').textContent = `$${subtotal.toFixed(2)}`; 
+            document.getElementById('invoiceTotalGst').textContent = `$${totalGst.toFixed(2)}`; 
+            document.getElementById('invoiceGrandTotal').textContent = `$${grandTotal.toFixed(2)}`; 
+        }
+        async function saveInvoice(e) { 
+            e.preventDefault(); 
+            const customerId = document.getElementById('invoiceCustomer').value, 
+                  invoiceType = document.getElementById('invoiceType').value, 
+                  invoiceDate = document.getElementById('invoiceDate').value, 
+                  invoiceNumber = document.getElementById('invoiceNumber').value; 
+            if (!customerId || !invoiceDate || !invoiceNumber || currentInvoiceItems.length === 0) { showToast("Please fill all fields and add at least one item.", true); return; } 
+            const customer = customerCache.find(c => c.id === customerId); 
+            if (!customer) { showToast("Customer not found. Please re-select.", true); return; } 
+            let subtotal = 0, totalGst = 0; 
+            const items = currentInvoiceItems.map(item => { 
+                const baseValue = item.rate * item.qty, 
+                      discountAmount = baseValue * (item.discountPercent / 100), 
+                      taxableValue = baseValue - discountAmount, 
+                      cgstAmount = (taxableValue * (item.gstPercent / 100)) / 2, 
+                      sgstAmount = (taxableValue * (item.gstPercent / 100)) / 2, 
+                      total = taxableValue + cgstAmount + sgstAmount; 
+                subtotal += taxableValue; 
+                totalGst += (cgstAmount + sgstAmount); 
+                return { ...item, mrp: item.mrp || 0, freePcs: item.freePcs || 0, discountPercent: item.discountPercent || 0, taxableValue, cgstAmount, sgstAmount, total }; 
+            }); 
+            const grandTotal = subtotal + totalGst; 
+            const invoiceData = { customerId: customerId, customerName: customer.name, customerGstin: customer.gstin || '', customerAddress: customer.address || '', invoiceType, invoiceNumber, invoiceDate: Timestamp.fromDate(new Date(invoiceDate)), items, subtotal, totalGst, grandTotal, returns: [], createdAt: Timestamp.now() }; 
+            try { 
+                await runTransaction(db, async (transaction) => { 
+                    const collectionPath = getCollectionPath(INVOICES_COLLECTION); 
+                    if (!collectionPath) throw new Error("Path error"); 
+                    const productUpdates = []; 
+                    for (const item of items) { 
+                        const productRef = doc(db, getCollectionPath(PRODUCTS_COLLECTION), item.productId); 
+                        const productDoc = await transaction.get(productRef); 
+                        if (!productDoc.exists()) throw new Error(`Product ${item.name} not found!`); 
+                        const currentStock = productDoc.data().currentStock || 0; 
+                        if (item.qty > currentStock) throw new Error(`Low stock! Only ${currentStock} pcs left for ${item.name}.`); 
+                        const newStock = currentStock - item.qty; 
+                        productUpdates.push({ ref: productRef, newStock: newStock }); 
+                    } 
+                    const newInvoiceRef = doc(collection(db, collectionPath)); 
+                    transaction.set(newInvoiceRef, invoiceData); 
+                    for (const update of productUpdates) transaction.update(update.ref, { currentStock: update.newStock }); 
+                }); 
+                showToast("Invoice saved successfully and stock updated."); 
+                resetInvoiceForm(); 
+                showView('invoicesView'); 
+            } catch (error) { 
+                console.error("Error saving invoice transaction: ", error); 
+                if (error.message.startsWith("Low stock!") || error.message.startsWith("Product")) showToast(error.message, true); 
+                else showToast("Error saving invoice.", true); 
+            } 
+        }
+        function resetInvoiceForm() { 
+            const form = document.getElementById('invoiceForm');
+            if(form) form.reset(); 
+            const dateEl = document.getElementById('invoiceDate');
+            if(dateEl) dateEl.value = new Date().toISOString().split('T')[0]; 
+            currentInvoiceItems = []; 
+            updateInvoiceItemsTable(); 
+            updateInvoiceTotals(); 
+            updateInvoiceNumber();
+            const stockEl = document.getElementById('itemStockDisplay');
+            if(stockEl) stockEl.textContent = ''; 
+        }
         
-        // --- प्रिंट लॉजिक (Print Logic - Updated with Stacked Layout) ---
+        function loadInvoices() { 
+            const collectionPath = getCollectionPath(INVOICES_COLLECTION); 
+            if (!collectionPath) return; 
+            console.log("Loading invoices from:", collectionPath); 
+            const q = query(collection(db, collectionPath)); 
+            onSnapshot(q, (querySnapshot) => { 
+                const tbody = document.getElementById('invoiceList'); 
+                if(!tbody) return;
+                tbody.innerHTML = ''; 
+                invoiceCache = []; 
+                querySnapshot.forEach((doc) => { 
+                    const invoice = { id: doc.id, ...doc.data() }; 
+                    invoiceCache.push(invoice); 
+                    let totalReturnedAmount = 0; 
+                    if (invoice.returns && invoice.returns.length > 0) invoice.returns.forEach(ret => (ret.items || []).forEach(item => { const originalItem = (invoice.items || []).find(i => i.productId === item.productId); if(originalItem) { const rate = originalItem.rate, gstPercent = originalItem.gstPercent, taxableValue = rate * item.returnQty, gstAmount = taxableValue * (gstPercent / 100); totalReturnedAmount += taxableValue + gstAmount; } })); 
+                    const netAmount = invoice.grandTotal - totalReturnedAmount; 
+                    let status = ""; 
+                    if(totalReturnedAmount > 0 && netAmount > 0.01) status = `<span class="font-semibold text-yellow-600">Partial Return</span>`; 
+                    else if (netAmount <= 0.01) status = `<span class="font-semibold text-red-600">Full Return</span>`; 
+                    else status = `<span class="font-semibold text-green-600">Final</span>`; 
+                    
+                    let convertButton = ''; 
+                    if (invoice.invoiceType === 'estimate') { 
+                        convertButton = `<button onclick="convertToInvoice('${invoice.id}')" class="table-action-icon icon-green" title="Convert to GST Bill"><i class="fas fa-file-invoice-dollar"></i></button>`; 
+                    } 
+                    
+                    const tr = document.createElement('tr'); 
+                    tr.setAttribute('data-search', `${invoice.invoiceNumber.toLowerCase()} ${invoice.customerName.toLowerCase()}`); 
+                    tr.innerHTML = `
+                        <td class="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">${invoice.invoiceNumber}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-600">${invoice.invoiceType === 'invoice' ? 'GST Bill' : 'Estimate'}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-600">${invoice.customerName}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-600">${new Date(invoice.invoiceDate.seconds * 1000).toLocaleDateString('en-GB')}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                            <div>$${invoice.grandTotal.toFixed(2)}</div>
+                            ${totalReturnedAmount > 0 ? `<div class="text-xs text-red-500">(Returned: $${totalReturnedAmount.toFixed(2)})</div>` : ''}
+                        </td>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm">${status}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-right text-lg font-medium table-action-buttons">
+                            <button onclick="handlePrintInvoice('${invoice.id}')" class="table-action-icon icon-blue" title="Print"><i class="fas fa-print"></i></button>
+                            ${convertButton}
+                            <button onclick="openReturnModal('${invoice.id}')" class="table-action-icon icon-yellow" title="Manage Return"><i class="fas fa-undo"></i></button>
+                            <button onclick="deleteInvoice('${invoice.id}', '${invoice.invoiceNumber}')" class="table-action-icon icon-red" title="Delete Bill"><i class="fas fa-trash"></i></button>
+                        </td>`; 
+                    tbody.appendChild(tr); 
+                }); 
+                console.log("Invoices loaded:", invoiceCache.length); 
+                
+                // --- START: NEW DASHBOARD RENDER CALL ---
+                renderDashboardLists(); // Update dashboard with all loaded invoices
+                // --- END: NEW DASHBOARD RENDER CALL ---
+                
+            }, (error) => { console.error("Error loading invoices: ", error); showToast("Error loading invoices.", true); }); 
+        }
+        window.convertToInvoice = async (id) => { 
+            if (!id) return; 
+            const invoiceRef = doc(db, getCollectionPath(INVOICES_COLLECTION), id); 
+            try { 
+                await updateDoc(invoiceRef, { invoiceType: "invoice" }); 
+                showToast("Estimate has been converted to a GST Bill."); 
+            } catch (error) { console.error("Error converting invoice: ", error); showToast("Error converting invoice.", true); } 
+        }
+        window.filterInvoices = () => { 
+            const filter = document.getElementById('searchInvoices').value.toLowerCase(); 
+            const rows = document.querySelectorAll('#invoiceList tr'); 
+            rows.forEach(row => { 
+                const searchData = row.getAttribute('data-search'); 
+                if (searchData.includes(filter)) row.style.display = ''; 
+                else row.style.display = 'none'; 
+            }); 
+        }
+        window.deleteInvoice = (id, number) => { 
+            showDeleteModal(`Delete Bill #${number}?`, "This action cannot be undone. This will not restore stock.", async () => { 
+                try { 
+                    await deleteDoc(doc(db, getCollectionPath(INVOICES_COLLECTION), id)); 
+                    showToast("Bill deleted. (Stock was not restored)"); 
+                } catch (error) { console.error("Error deleting invoice: ", error); showToast("Error deleting bill.", true); } 
+            }); 
+        }
+        
+        // --- Print Logic (Updated with English) ---
         window.handlePrintInvoice = (id) => { 
             const invoice = invoiceCache.find(inv => inv.id === id); if (!invoice) return; 
-            const companyDetails = { name: "अंश चावला ट्रेडर्स", address: "मोहर सिंह चौक, नियर कलंदर पीर, पानीपत", gstin: "06ABCDE1234F1Z5", phone: "99988 77665", fssai: "20621009000367" }; 
-            const bankDetails = "OUR BANK: HDFC A/C No: 50200058046999, IFSC: HDFC000147..."; 
+            
+            // ---!!! Your Firm Details !!!---
+            const companyDetails = { 
+                name: "RADHE KRISHNA TRADERS", 
+                address: "House No. 99/12, Kalandar Chowk, Panipat (Haryana) 132103", 
+                gstin: "06MLVPK1334B1Z0", 
+                phone: "7082059827, 8168878724",
+                email: "Chawlaansh908@gmail.com"
+            }; 
+            
             let printContent = '';
             
             if (invoice.invoiceType === 'estimate') { 
-                // --- एस्टीमेट लेआउट (यह पहले से ही साफ़ था) ---
+                // --- Estimate Layout ---
                 let totalQty = 0, totalAmount = 0; 
                 let itemHtml = (invoice.items || []).map((item, index) => { 
                     const listPrice = item.rate, discountPercent = item.discountPercent || 0, priceAfterDiscount = listPrice * (1 - (discountPercent / 100)), amount = priceAfterDiscount * item.qty; 
@@ -623,29 +1749,28 @@
                 }).join('');
                 printContent = `<div style="font-family: 'Arial', sans-serif; font-size: 10px; line-height: 1.3; color: #000;">
                                     <table style="width: 100%; border-collapse: collapse;"><tr><td style="text-align: center; font-size: 14px; font-weight: bold;">ESTIMATE</td></tr></table>
-                                    <table class="print-detail-table" style="width: 100%; border-collapse: collapse; margin-top: 5px; border-top: 1px solid #666; border-bottom: 1px solid #666;">
-                                        <tr><td style="width: 60%; vertical-align: top;"><strong style="font-size: 12px;">${companyDetails.name}</strong><br>${companyDetails.address}<br>फ़ोन: ${companyDetails.phone}</td><td style="width: 40%; vertical-align: top;">No.: <strong>${invoice.invoiceNumber}</strong><br>Date: <strong>${new Date(invoice.invoiceDate.seconds * 1000).toLocaleDateString('hi-IN')}</strong></td></tr>
+                                    <table class="print-detail-table">
+                                        <tr><td style="width: 60%;"><strong style="font-size: 12px;">${companyDetails.name}</strong><br>${companyDetails.address}<br>Phone: ${companyDetails.phone}</td><td style="width: 40%;">No.: <strong>${invoice.invoiceNumber}</strong><br>Date: <strong>${new Date(invoice.invoiceDate.seconds * 1000).toLocaleDateString('en-GB')}</strong></td></tr>
                                         <tr><td colspan="2" style="border-top: 1px solid #666;">M/s: <strong style="font-size: 12px;">${invoice.customerName}</strong><br>${invoice.customerAddress || ''}</td></tr>
                                     </table>
-                                    <table class="print-table" style="width: 100%; border-collapse: collapse; margin-top: 5px;">
+                                    <table class="print-table">
                                         <thead><tr style="text-align: center;"><th style="text-align: left;">S.N</th><th style="text-align: left;">Description</th><th>Qty</th><th>Unit</th><th>List Price</th><th>Disc</th><th>Price</th><th>Amount</th></tr></thead>
                                         <tbody>${itemHtml}</tbody>
                                     </table>
                                     <table style="width: 100%; border-collapse: collapse; margin-top: 5px;">
                                         <tr><td style="width: 60%; vertical-align: top;"><strong>Total Qty: ${totalQty}</strong></td>
                                             <td style="width: 40%; vertical-align: top; font-size: 11px;">
-                                                <table class="print-summary-table" style="width: 100%;"><tr style="font-size: 14px; font-weight: bold; border-top: 1px solid #666; border-bottom: 1px solid #666;"><td>GRAND TOTAL</td><td style="text-align: right;">${totalAmount.toFixed(2)}</td></tr></table>
+                                                <table class="print-summary-table"><tr style="font-size: 14px; font-weight: bold; border-top: 1px solid #666; border-bottom: 1px solid #666;"><td>GRAND TOTAL</td><td style="text-align: right;">${totalAmount.toFixed(2)}</td></tr></table>
                                                 <div style="text-align: right; margin-top: 20px;"><strong>For ${companyDetails.name}</strong><br><br><br>Authorised signatory</div>
                                             </td></tr>
                                     </table>
                                </div>`;
             } else { 
-                // --- नया GST बिल लेआउट (Stacked) ---
+                // --- GST Invoice Layout (Stacked) ---
                 const gstSummary = {}; let totalPcs = 0, totalFreePcs = 0; 
                 (invoice.items || []).forEach(item => { const rate = item.gstPercent; if (!gstSummary[rate]) gstSummary[rate] = { taxable: 0, cgst: 0, sgst: 0 }; gstSummary[rate].taxable += item.taxableValue || 0; gstSummary[rate].cgst += item.cgstAmount || 0; gstSummary[rate].sgst += item.sgstAmount || 0; totalPcs += (item.qty || 0); totalFreePcs += (item.freePcs || 0); }); 
                 let gstSummaryHtml = Object.keys(gstSummary).sort((a,b)=>a-b).map(rate => `<tr style="text-align: right;"><td>${rate}%</td><td>${gstSummary[rate].taxable.toFixed(2)}</td><td>${gstSummary[rate].sgst.toFixed(2)}</td><td>${gstSummary[rate].cgst.toFixed(2)}</td><td>0.00</td></tr>`).join(''); 
                 
-                // --- यह बदला है ---
                 const itemTableHead_GST = `<thead>
                                 <tr style="text-align: center;">
                                     <th style="padding: 4px; text-align:center; width: 5%;">S.N</th>
@@ -653,7 +1778,6 @@
                                     <th style="text-align: right; width: 30%;">TOTAL AMOUNT</th>
                                 </tr>
                                </thead>`;
-
                 let itemHtml_GST = (invoice.items || []).map((item, index) => {
                     const itemDetails = `
                         <div style="font-size: 10px; line-height: 1.4; padding: 2px 0;">
@@ -675,21 +1799,22 @@
                                 <td style="text-align:right; font-weight:bold; font-size: 11px; vertical-align: top; padding-top: 4px;">${(item.total || 0).toFixed(2)}</td>
                             </tr>`;
                 }).join('');
-                // --- यहाँ तक बदला है ---
 
                 printContent = `<div style="font-family: 'Arial', sans-serif; font-size: 10px; line-height: 1.3; color: #000;">
                                     <table style="width: 100%; border-collapse: collapse; border-bottom: 1px solid #666;">
-                                        <tr><td style="width: 40%; vertical-align: top;"><strong style="font-size: 12px;">${companyDetails.name}</strong><br>${companyDetails.address}<br>फ़ोन: ${companyDetails.phone}<br>FSSAI No: ${companyDetails.fssai}<br>GSTIN: <strong>${companyDetails.gstin}</strong></td><td style="width: 30%; text-align: center; vertical-align: top;"><strong style="font-size: 14px; border: 1px solid #000; padding: 1px 3px;">GST INVOICE</strong></td><td style="width: 30%; text-align: right; vertical-align: top; font-size: 8px;"></td></tr>
+                                        <tr>
+                                            <td style="width: 40%; vertical-align: top;"><strong style="font-size: 12px;">${companyDetails.name}</strong><br>${companyDetails.address}<br>Phone: ${companyDetails.phone}<br>Email: ${companyDetails.email}<br>GSTIN: <strong>${companyDetails.gstin}</strong></td>
+                                            <td style="width: 30%; text-align: center; vertical-align: top;"><strong style="font-size: 14px; border: 1px solid #000; padding: 1px 3px;">GST INVOICE</strong></td>
+                                            <td style="width: 30%; text-align: right; vertical-align: top; font-size: 8px;"></td>
+                                        </tr>
                                     </table>
-                                    <table class="print-detail-table" style="width: 100%; border-collapse: collapse; margin-top: 5px; border-bottom: 1px solid #666;">
-                                        <tr><td style="width: 60%; vertical-align: top;">Buyer:<br><strong style="font-size: 12px;">${invoice.customerName}</strong><br>${invoice.customerAddress || ''}<br>GSTIN: <strong>${invoice.customerGstin || 'N/A'}</strong></td><td style="width: 40%; vertical-align: top;">Invoice No.: <strong>${invoice.invoiceNumber}</strong><br>Date: <strong>${new Date(invoice.invoiceDate.seconds * 1000).toLocaleDateString('hi-IN')}</strong><br>Terms: <strong>CREDIT</strong><br>Route: <strong>N/A</strong></td></tr>
+                                    <table class="print-detail-table">
+                                        <tr><td style="width: 60%;">Buyer:<br><strong style="font-size: 12px;">${invoice.customerName}</strong><br>${invoice.customerAddress || ''}<br>GSTIN: <strong>${invoice.customerGstin || 'N/A'}</strong></td><td style="width: 40%;">Invoice No.: <strong>${invoice.invoiceNumber}</strong><br>Date: <strong>${new Date(invoice.invoiceDate.seconds * 1000).toLocaleDateString('en-GB')}</strong><br>Terms: <strong>CREDIT</strong><br>Route: <strong>N/A</strong></td></tr>
                                     </table>
-                                    <!-- यह टेबल बदली है -->
-                                    <table class="print-table" style="width: 100%; border-collapse: collapse; margin-top: 5px;">
+                                    <table class="print-table">
                                         ${itemTableHead_GST}
                                         <tbody>${itemHtml_GST}</tbody>
                                     </table>
-                                    <!-- यहाँ तक बदली है -->
                                     <table style="width: 100%; border-collapse: collapse; margin-top: 5px;">
                                         <tr><td style="width: 60%; vertical-align: top; border-right: 1px solid #ccc;"><strong>TOTAL QTY: ${totalPcs} PCS, ${totalFreePcs} FREE</strong>
                                             <table class="print-table" style="width: 95%; font-size: 9px; margin-top: 5px;">
@@ -699,7 +1824,7 @@
                                             <div style="font-size: 8px;"><strong>Terms & Conditions:</strong><br>1. Goods once sold will not be taken back or exchanged.<br>2. CHECK YOUR PAYMENT WITH BILL/AUTHORISED RECEIPT.<br>3. All disputes subject to jurisdiction only.</div>
                                             </td>
                                             <td style="width: 40%; vertical-align: top; padding-left: 5px; font-size: 11px;">
-                                                <table class="print-summary-table" style="width: 100%;">
+                                                <table class="print-summary-table">
                                                     <tr><td>SUBTOTAL</td><td style="text-align: right;">${(invoice.subtotal || 0).toFixed(2)}</td></tr>
                                                     <tr><td>DISCOUNT</td><td style="text-align: right;">0.00</td></tr>
                                                     <tr><td>SGST</td><td style="text-align: right;">${(invoice.totalGst / 2).toFixed(2)}</td></tr>
@@ -711,29 +1836,229 @@
                                                 <div style="text-align: right; margin-top: 15px;"><strong>For ${companyDetails.name}</strong><br><br><br>Authorised signatory</div>
                                             </td></tr>
                                     </table>
-                                    <div style="border-top: 1px solid #666; margin-top: 5px; padding-top: 3px; font-size: 8px; text-align: center;">${bankDetails}</div>
-                               </div>`;
+                                    </div>`;
             }
             const printArea = document.getElementById('print-area'); 
             printArea.innerHTML = printContent; 
+            printArea.classList.remove('hidden'); // Show for printing
             setTimeout(() => {
                  window.print(); 
-                 printArea.innerHTML = ''; // प्रिंट के बाद साफ़ करें
-            }, 100); // 100ms का इंतज़ार
+                 printArea.innerHTML = ''; // Clear after printing
+                 printArea.classList.add('hidden'); // Hide again
+            }, 100); 
         }
         
-        window.openReturnModal = (id) => { /* ... कोड ... */ const invoice = invoiceCache.find(inv => inv.id === id); if (!invoice) return; showToast("रिटर्न अभी स्टॉक में वापस ऐड नहीं करेगा।", true); document.getElementById('returnInvoiceId').value = id; document.getElementById('returnInvoiceNumber').textContent = invoice.invoiceNumber; const tbody = document.getElementById('returnItemsList'); tbody.innerHTML = ''; (invoice.items || []).forEach((item, index) => { let totalReturnedSoFar = 0; if (invoice.returns && invoice.returns.length > 0) invoice.returns.forEach(ret => { const returnedItem = (ret.items || []).find(ri => ri.productId === item.productId); if (returnedItem) totalReturnedSoFar += returnedItem.returnQty; }); const maxReturnable = item.qty - totalReturnedSoFar; const tr = document.createElement('tr'); tr.innerHTML = `<td>${item.name}</td><td>${item.qty}</td><td>${totalReturnedSoFar}</td><td><input type="number" data-product-id="${item.productId}" class="form-input return-qty-input" value="0" min="0" max="${maxReturnable}" style="width: 6rem;"></td>`; tbody.appendChild(tr); }); document.getElementById('returnModal').classList.remove('hidden'); }
-        window.closeReturnModal = () => { /* ... कोड ... */ document.getElementById('returnModal').classList.add('hidden'); document.getElementById('returnForm').reset(); }
-        async function saveReturn(e) { /* ... कोड ... */ e.preventDefault(); const invoiceId = document.getElementById('returnInvoiceId').value; const inputs = document.querySelectorAll('.return-qty-input'); let hasItems = false; const returnItems = []; let validationError = false; inputs.forEach(input => { if (validationError) return; const returnQty = parseFloat(input.value), maxReturnable = parseFloat(input.max); if (returnQty > maxReturnable) { showToast(`"${input.closest('tr').cells[0].textContent}" के लिए मात्रा गलत है (Max: ${maxReturnable})`, true); validationError = true; return; } if (returnQty > 0) { hasItems = true; returnItems.push({ productId: input.dataset.productId, returnQty: returnQty }); } }); if (validationError) return; if (!hasItems) { showToast("वापसी के लिए कोई आइटम नहीं चुना गया।", true); return; } try { const invoiceRef = doc(db, getCollectionPath(INVOICES_COLLECTION), invoiceId); const invoiceDoc = await getDoc(invoiceRef); const invoiceData = invoiceDoc.data(); const newReturn = { date: Timestamp.now(), items: returnItems }; const updatedReturns = invoiceData.returns ? [...invoiceData.returns, newReturn] : [newReturn]; await updateDoc(invoiceRef, { returns: updatedReturns }); showToast("रिटर्न सफलतापूर्वक सेव हो गया। (स्टॉक अपडेट नहीं हुआ)"); closeReturnModal(); } catch (error) { console.error("Error saving return: ", error); showToast("रिटर्न सेव करने में त्रुटि हुई।", true); } }
+        window.openReturnModal = (id) => { 
+            const invoice = invoiceCache.find(inv => inv.id === id); 
+            if (!invoice) return; 
+            showToast("Note: Returns will be saved, but stock will not be added back.", true); 
+            document.getElementById('returnInvoiceId').value = id; 
+            document.getElementById('returnInvoiceNumber').textContent = invoice.invoiceNumber; 
+            const tbody = document.getElementById('returnItemsList'); 
+            if(!tbody) return;
+            tbody.innerHTML = ''; 
+            (invoice.items || []).forEach((item, index) => { 
+                let totalReturnedSoFar = 0; 
+                if (invoice.returns && invoice.returns.length > 0) invoice.returns.forEach(ret => { const returnedItem = (ret.items || []).find(ri => ri.productId === item.productId); if (returnedItem) totalReturnedSoFar += returnedItem.returnQty; }); 
+                const maxReturnable = item.qty - totalReturnedSoFar; 
+                const tr = document.createElement('tr'); 
+                tr.innerHTML = `
+                    <td class="px-4 py-2 whitespace-nowrap">${item.name}</td>
+                    <td class="px-4 py-2 whitespace-nowrap">${item.qty}</td>
+                    <td class="px-4 py-2 whitespace-nowrap">${totalReturnedSoFar}</td>
+                    <td class="px-4 py-2 whitespace-nowrap">
+                        <input type="number" data-product-id="${item.productId}" class="return-qty-input form-input" style="width: 6rem; margin-top: 0; padding: 0.25rem 0.5rem;" value="0" min="0" max="${maxReturnable}">
+                    </td>`; 
+                tbody.appendChild(tr); 
+            }); 
+            document.getElementById('returnModal').classList.remove('hidden'); 
+        }
+        window.closeReturnModal = () => { 
+            document.getElementById('returnModal').classList.add('hidden'); 
+            const form = document.getElementById('returnForm');
+            if(form) form.reset(); 
+        }
+        async function saveReturn(e) { 
+            e.preventDefault(); 
+            const invoiceId = document.getElementById('returnInvoiceId').value; 
+            const inputs = document.querySelectorAll('.return-qty-input'); 
+            let hasItems = false; 
+            const returnItems = []; 
+            let validationError = false; 
+            inputs.forEach(input => { 
+                if (validationError) return; 
+                const returnQty = parseFloat(input.value), maxReturnable = parseFloat(input.max); 
+                if (returnQty > maxReturnable) { 
+                    showToast(`Invalid quantity for "${input.closest('tr').cells[0].textContent}" (Max: ${maxReturnable})`, true); 
+                    validationError = true; return; 
+                } 
+                if (returnQty > 0) { 
+                    hasItems = true; 
+                    returnItems.push({ productId: input.dataset.productId, returnQty: returnQty }); 
+                } 
+            }); 
+            if (validationError) return; 
+            if (!hasItems) { showToast("No items selected for return.", true); return; } 
+            try { 
+                const invoiceRef = doc(db, getCollectionPath(INVOICES_COLLECTION), invoiceId); 
+                const invoiceDoc = await getDoc(invoiceRef); 
+                const invoiceData = invoiceDoc.data(); 
+                const newReturn = { date: Timestamp.now(), items: returnItems }; 
+                const updatedReturns = invoiceData.returns ? [...invoiceData.returns, newReturn] : [newReturn]; 
+                await updateDoc(invoiceRef, { returns: updatedReturns }); 
+                showToast("Return saved successfully. (Stock not updated)"); 
+                closeReturnModal(); 
+            } catch (error) { console.error("Error saving return: ", error); showToast("Error saving return.", true); } 
+        }
 
-        // --- ग्लोबल बना रहे हैं ---
+
+        // --- START: NEW ADVANCED DASHBOARD FUNCTIONS ---
+        
+        // 1. Toggles the dashboard tabs (GST vs Estimates)
+        window.showDashboardTab = (tabName) => {
+            document.getElementById('dash-content-gst').classList.toggle('hidden', tabName !== 'gst');
+            document.getElementById('dash-tab-gst').classList.toggle('active', tabName === 'gst');
+            
+            document.getElementById('dash-content-estimate').classList.toggle('hidden', tabName !== 'estimate');
+            document.getElementById('dash-tab-estimate').classList.toggle('active', tabName === 'estimate');
+        }
+
+        // 2. Toggles a date group (expands/collapses)
+        window.toggleDateGroup = (headerElement) => {
+            headerElement.classList.toggle('expanded');
+            const billList = headerElement.nextElementSibling;
+            if (billList) {
+                billList.classList.toggle('hidden');
+            }
+        }
+        
+        // 3. Main function to render all dashboard lists (handles search and grouping)
+        window.renderDashboardLists = () => {
+            const searchTerm = document.getElementById('dashboardSearchInput').value.toLowerCase();
+            
+            // Get all containers
+            const gstGroupedContainer = document.getElementById('dash-content-gst-grouped');
+            const gstSearchContainer = document.getElementById('dash-content-gst-search');
+            const estGroupedContainer = document.getElementById('dash-content-estimate-grouped');
+            const estSearchContainer = document.getElementById('dash-content-estimate-search');
+            
+            if (!invoiceCache) return; // Exit if cache isn't ready
+
+            let filteredInvoices = invoiceCache;
+
+            // --- Handle Search ---
+            if (searchTerm.length > 0) {
+                // 1. Filter the cache
+                filteredInvoices = invoiceCache.filter(inv => 
+                    inv.customerName.toLowerCase().includes(searchTerm) ||
+                    inv.invoiceNumber.toLowerCase().includes(searchTerm)
+                );
+                
+                // 2. Sort by newest first
+                filteredInvoices.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
+
+                // 3. Separate into GST and Estimates
+                const gstResults = filteredInvoices.filter(inv => inv.invoiceType === 'invoice');
+                const estResults = filteredInvoices.filter(inv => inv.invoiceType === 'estimate');
+
+                // 4. Show search containers, hide grouped containers
+                gstGroupedContainer.classList.add('hidden');
+                estGroupedContainer.classList.add('hidden');
+                gstSearchContainer.classList.remove('hidden');
+                estSearchContainer.classList.remove('hidden');
+
+                // 5. Build and inject search result HTML
+                gstSearchContainer.innerHTML = gstResults.length ? gstResults.map(createBillItemHtml).join('') : '<p>No GST bills found.</p>';
+                estSearchContainer.innerHTML = estResults.length ? estResults.map(createBillItemHtml).join('') : '<p>No estimates found.</p>';
+
+            } 
+            // --- Handle Grouping (No Search) ---
+            else {
+                // 1. Show grouped containers, hide search containers
+                gstGroupedContainer.classList.remove('hidden');
+                estGroupedContainer.classList.remove('hidden');
+                gstSearchContainer.classList.add('hidden');
+                estSearchContainer.classList.add('hidden');
+
+                // 2. Group the invoices
+                const groupedGst = groupInvoicesByDate(invoiceCache.filter(inv => inv.invoiceType === 'invoice'));
+                const groupedEst = groupInvoicesByDate(invoiceCache.filter(inv => inv.invoiceType === 'estimate'));
+                
+                // 3. Build and inject grouped HTML
+                gstGroupedContainer.innerHTML = groupedGst.length > 0 ? groupedGst.map(createDateGroupHtml).join('') : '<p>No GST bills found.</p>';
+                estGroupedContainer.innerHTML = groupedEst.length > 0 ? groupedEst.map(createDateGroupHtml).join('') : '<p>No estimates found.</p>';
+            }
+        }
+
+        // 4. Helper: Groups invoices by date
+        function groupInvoicesByDate(invoices) {
+            const groups = new Map();
+            const options = { day: '2-digit', month: 'short', year: 'numeric' }; // e.g., "27 Oct 2025"
+
+            invoices.forEach(inv => {
+                const date = new Date(inv.invoiceDate.seconds * 1000);
+                // Use a stable key for sorting (YYYY-MM-DD)
+                const dateKey = date.toISOString().split('T')[0];
+                const displayDate = date.toLocaleDateString('en-GB', options);
+
+                if (!groups.has(dateKey)) {
+                    groups.set(dateKey, { display: displayDate, bills: [] });
+                }
+                groups.get(dateKey).bills.push(inv);
+            });
+
+            // Convert Map to array, sort by dateKey (YYYY-MM-DD) descending
+            return Array.from(groups.entries())
+                .sort((a, b) => b[0].localeCompare(a[0])) // b[0] is the dateKey
+                .map(entry => entry[1]); // return just the value ({display, bills})
+        }
+
+        // 5. Helper: Creates HTML for a single bill item (for search or group)
+        function createBillItemHtml(inv) {
+            return `
+                <div class="bill-list-item" onclick="handlePrintInvoice('${inv.id}')" title="View Bill #${inv.invoiceNumber}">
+                    <div>
+                        <strong>#${inv.invoiceNumber}</strong> - ${inv.customerName}
+                    </div>
+                    <div class="bill-item-details">
+                        <span>$${inv.grandTotal.toFixed(2)}</span>
+                        <span>${new Date(inv.invoiceDate.seconds * 1000).toLocaleDateString('en-GB')}</span>
+                    </div>
+                </div>`;
+        }
+        
+        // 6. Helper: Creates HTML for a whole date group
+        function createDateGroupHtml(group) {
+            // Sort bills within the group by time (newest first)
+            group.bills.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
+            
+            return `
+                <div class="date-group">
+                    <button class="date-header" onclick="toggleDateGroup(this)">
+                        <span><i class="fas fa-chevron-right" style="margin-right: 0.5rem; font-size: 0.8em;"></i>${group.display}</span>
+                        <span>${group.bills.length} ${group.bills.length > 1 ? 'bills' : 'bill'}</span>
+                    </button>
+                    <div class="bill-list hidden">
+                        ${group.bills.map(createBillItemHtml).join('')}
+                    </div>
+                </div>`;
+        }
+
+        // --- END: NEW ADVANCED DASHBOARD FUNCTIONS ---
+
+
+        // --- Make functions globally accessible ---
         window.editCustomer = editCustomer; window.deleteCustomer = deleteCustomer; window.resetCustomerForm = resetCustomerForm;
         window.editProduct = editProduct; window.deleteProduct = deleteProduct; window.resetProductForm = resetProductForm;
         window.removeInvoiceItem = removeInvoiceItem; window.handlePrintInvoice = handlePrintInvoice;
         window.openReturnModal = openReturnModal; window.closeReturnModal = closeReturnModal;
         window.deleteInvoice = deleteInvoice; window.filterInvoices = filterInvoices; window.convertToInvoice = convertToInvoice;
+        
+        // --- NEW GLOBAL DASHBOARD FUNCTIONS ---
+        window.showDashboardTab = showDashboardTab;
+        window.toggleDateGroup = toggleDateGroup;
+        window.renderDashboardLists = renderDashboardLists;
 
     </script>
 </body>
 </html>
-
